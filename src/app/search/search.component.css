@@ -1,0 +1,25 @@
+.searchBar{
+  margin: 10px 30px;
+  padding: 20px;
+  border: 1px solid gray;
+  display: inline-block;
+}
+.searchBar * {
+  margin-bottom: 5px;
+}
+
+.buttons{
+  margin: 10px 0;
+}
+
+.buttons button{
+  padding: 5px 15px;
+  margin-right: 10px;
+}
+
+.buttons .searchBtn{
+  background-color: green;
+  color: white;
+}
+
+
