@@ -1,13 +1,21 @@
 .box {
-  display: flex;
-  align-content: space-around;
-  min-width: 70%;
+  /*border: 1px solid red;*/
+  width:80%;
+  display:flex;
+  margin:auto;
+  justify-content: space-between;
+}
+.outer{
+  width: 20%
+}
+.inner{
+  width: 75%;
 }
 
 
-.box table {
-  flex-grow: 2;
-}
-.box div {
-  flex-grow: 1;
-}
+/*.box table {*/
+/*  flex-grow: 2;*/
+/*}*/
+/*.box div {*/
+/*  flex-grow: 1;*/
+/*}*/

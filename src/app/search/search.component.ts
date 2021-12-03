@@ -11,14 +11,12 @@ export class SearchComponent implements OnInit {
 
   constructor(private countryService:CountryService) {
     this.countriesNameList = this.getCountriesName();
-    console.log(this.countriesNameList)
-
   }
 
 
 
   getCountriesName(){
-    return this.countryService.getCountries().data.map(data => data.name[3])
+    return this.countryService.getCountriesData().map(data => data.name[3])
   }
   ngOnInit(): void {
   }

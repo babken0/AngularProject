@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { SearchComponent } from './search/search.component';
 import {ContentComponent} from "./content/content.component";
+import {CommonModule} from "@angular/common";
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import {ContentComponent} from "./content/content.component";
     ContentComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    CommonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

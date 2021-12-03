@@ -1,11 +1,11 @@
 .searchBar{
-  margin: 10px 30px;
-  padding: 20px;
-  border: 1px solid gray;
-  display: inline-block;
+  /*margin: 10px 30px;*/
+  /*border: 1px solid blue;*/
+  padding: 10px 20px;
+
 }
 .searchBar * {
-  margin-bottom: 5px;
+  margin-bottom: 30px;
 }
 
 .buttons{
@@ -22,4 +22,9 @@
   color: white;
 }
 
-
+.special{
+  /*margin-left: 15px;*/
+  width:50%;
+  color:gray;
+ padding:10px;
+}

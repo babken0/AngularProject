@@ -17,10 +17,10 @@
       <td>{{data.InterventionCode}}</td>
       <td>{{data.ShortName}}</td>
       <td>{{data.Title}}</td>
-      <td>{{data.InterventionCode}}</td>
-      <td>{{data.InterventionCode}}</td>
-      <td>{{data.InterventionCode}}</td>
-      <td>{{convertToDate(data.DateUpdated)}}</td>
+      <td>{{getCountryById(data.InterventionCountryID)}}</td>
+      <td>{{getStatusById(data.workflowStateId)}}</td>
+      <td>{{getUserById(data.UpdatedUserID)}}</td>
+      <td>{{data.DateUpdated | date:'d/M/yy'}}</td>
     </tr>
     </tbody>
   </table>
