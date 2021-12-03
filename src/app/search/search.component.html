@@ -5,7 +5,9 @@
   </div>
   <div class="country">
     <label for="country">Country</label><br>
-    <select name="country" id="country"></select>
+    <select name="country" id="country">
+      <option  *ngFor = "let country of countriesNameList">{{ country }}</option>
+    </select>
   </div>
   <div class="keyword">
     <label for=" keyword">Keyword</label><br>

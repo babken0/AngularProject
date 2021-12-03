@@ -1,0 +1,333 @@
+{
+   "data":[
+      {
+         "ActualEndDate":"2023-12-06",
+         "InterventionCode":"BEL20005",
+         "Description":"The overall objective of the Action is to contribute to closing the digital divide and leveraging digital innovations for inclusive sustainable development in Africa. \nThe specific objective of the Action is to strengthen African national and regional partners’ capability to identify and implement priority actions in response to digitalisation challenges.\nThe project offers a comprehensive package of services, products and activities, built around three intervention areas. Namely:\n(1) Technical assistance to national and regional institutions that request expertise services to develop or operationalise digital transformation plans and support the implementation of digital projects. \n(2) Exchanges of knowledge (incl. experiences, skills and expertise) between African and European stakeholders. \n(3) Dialogues to promote collaborative policy making between governments, civil society, private sector and academia in Africa and Europe.\nThe project is co-funded by the EU (max EUR 8,000,000) and AFD, GIZ, LuxDev, Enabel and the MFA Estonia (EUR 974,223).",
+         "InterventionProgrammeInstanceID":null,
+         "InterventionID":21091,
+         "DateUpdated":1638442736000,
+         "Title":"Implementation of the AU-EU D4D Hub Project",
+         "ShortName":"AU-EU D4D Hub",
+         "ActualStartDate":"2020-12-07",
+         "interventionPartnerInstitutions":[
+            {
+               "PartnerInstitutionOrganisationID":105
+            },
+            {
+               "PartnerInstitutionOrganisationID":104
+            },
+            {
+               "PartnerInstitutionOrganisationID":102
+            },
+            {
+               "PartnerInstitutionOrganisationID":106
+            }
+         ],
+         "lastActionComment":{
+            "3":null,
+            "4":null
+         },
+         "workflowStateId":33,
+         "InterventionCountryID":1130,
+         "ExternalReferenceNumber":null,
+         "InterventionInstanceId":1126,
+         "SAEndDate":"2023-12-06",
+         "CommericalName":"AU-EU D4D Hub project",
+         "UpdatedUserID":1001051,
+         "MasterID":749
+      },
+      {
+         "ActualEndDate":"2023-01-31",
+         "InterventionCode":"MOR170571T",
+         "Description":"Le projet « Empowerment juridique des personnes migrantes » financé par l’Union européenne et mis en œuvre par Enabel en partenariat avec le Ministère de la justice et le Ministère délégué auprès du Ministère des Affaires étrangères, de la Coopération africaine et des Marocains résidant à l’étranger, chargé des Marocains résidant à l’étranger (MCMRE) a débuté fin 2018 et sera mis en œuvre jusqu’en octobre 2021. Le projet va permettre de renforcer l’accès aux droits des migrants, demandeurs d’asile et réfugiés au Maroc en consolidant les connaissances sur les droits de ces populations, en favorisant le travail en réseau et la coordination des différents acteurs, en soutenant la production de données thématiques scientifiques et le partage d’informations sur l’accès aux droits et finalement, en facilitant les échanges d’informations et des recommandations entre tous les acteurs concernés en vue de contribuer à l’adaptation des outils et structures de services aux besoins identifiés des populations migrantes.\n\nLe projet cible directement les migrants, les demandeurs d’asile et réfugiés, de même que quatre catégories d’acteurs - les avocats, les universités (au travers notamment des cliniques juridiques et des étudiants en droit), les associations et le personnel de justice – qui verront leurs connaissances et compétences renforcées et dont le travail en réseau et la production de données contribuera à renforcer l’accès aux droits des migrants, demandeurs d’asile et réfugiés. \nLes actions du projet vont donc contribuer à renforcer l’assistance juridique des migrants, demandeurs d’asile et réfugiés au Maroc et plus particulièrement dans les régions de Casablanca, Oujda, Rabat et Tanger. De plus, des activités de renforcement ou de mise en place de cliniques juridiques seront mises en oeuvre en Tunisie, au travers de partenariats avec des universités dans les villes de Sfax, Sousse et Tunis.",
+         "InterventionProgrammeInstanceID":null,
+         "InterventionID":21088,
+         "DateUpdated":1638432792000,
+         "Title":"Empowerment juridique des personnes migrantes",
+         "ShortName":"Empowerment juridique",
+         "ActualStartDate":"2018-11-01",
+         "interventionPartnerInstitutions":[
+            {
+               "PartnerInstitutionOrganisationID":180
+            },
+            {
+               "PartnerInstitutionOrganisationID":698
+            },
+            {
+               "PartnerInstitutionOrganisationID":553
+            }
+         ],
+         "lastActionComment":{
+            "3":null,
+            "4":null
+         },
+         "workflowStateId":33,
+         "InterventionCountryID":1122,
+         "ExternalReferenceNumber":"NOA-MA-02-T05.431",
+         "InterventionInstanceId":967,
+         "SAEndDate":"2023-01-31",
+         "CommericalName":"Empowerment juridique des personnes migrantes",
+         "UpdatedUserID":7,
+         "MasterID":399
+      },
+      {
+         "ActualEndDate":"2021-11-30",
+         "InterventionCode":"MLI170521T",
+         "Description":"Le Fonds Fiduciaire de l'UE finance des projets pertinents pour remédier aux causes de la migration, et pour encourager les efforts du Mali dans la coopération sur des questions migratoires. Dans ce cadre, il sera apporté un appui pour la mise en place d’un système d’information de l’état civil universel et sécurisé afin que chaque Malien soit en mesure de revendiquer les droit inhérents à son identité.Le projet contribuera à la modernisation de l’état civil par la mise en place d’un appui au pilotage stratégique, par une amélioration de l’offre (accessibilité des centres, formation des acteurs, archivage, etc.) et de la demande (campagnes de sensibilitation, éducation civique, etc.). Enfin, le projet devrait permettre de disposer d’un système d’information de l’état civil informatisé relié à une base de données biométriques à même de sécuriser l’identité de la population et d’être exploitable par d’autres adminsitrations utilisatrices.",
+         "InterventionProgrammeInstanceID":null,
+         "InterventionID":21086,
+         "DateUpdated":1638374678000,
+         "Title":"Programme d'appui au fonctionnement de l'état civil et à la mise en place d'un système d'information sécurisé au Mali",
+         "ShortName":"PAECSIS",
+         "ActualStartDate":"2018-01-31",
+         "interventionPartnerInstitutions":[
+            {
+               "PartnerInstitutionOrganisationID":519
+            },
+            {
+               "PartnerInstitutionOrganisationID":496
+            },
+            {
+               "PartnerInstitutionOrganisationID":573
+            },
+            {
+               "PartnerInstitutionOrganisationID":674
+            },
+            {
+               "PartnerInstitutionOrganisationID":675
+            }
+         ],
+         "lastActionComment":{
+            "3":null,
+            "4":null
+         },
+         "workflowStateId":33,
+         "InterventionCountryID":1121,
+         "ExternalReferenceNumber":"T05-EUTF-SAH-ML-08",
+         "InterventionInstanceId":751,
+         "SAEndDate":"2022-05-30",
+         "CommericalName":"Programme d'appui au fonctionnement de l'état civil et à la mise en place d'un système d'information sécurisé au Mali",
+         "UpdatedUserID":1000365,
+         "MasterID":71
+      },
+      {
+         "ActualEndDate":"2021-11-30",
+         "InterventionCode":"UGA160321T",
+         "Description":"As part of the EU-TF, the intervention will build on policy and practice and contribute to skills development for refugees and their host communities through short and medium term Vocational Training and Entrepreneurship Support in Adjumani, Kiryandongo and Arua districts in North-Western Uganda. The operation will be handled as a specific, earmarked component of the Belgian Bilateral Support to Skilling Uganda-intervention. The skills acquired, will:(a) Strengthen youth, women and girls in their access to the local labour market (b) Support refugees and host communities in improving their livelihoods through the creation of micro and small enterprises.",
+         "InterventionProgrammeInstanceID":null,
+         "InterventionID":21085,
+         "DateUpdated":1638368559000,
+         "Title":"European Union Trust Fund (EUTF) - Support Programme for Refugee settlements in Northern Uganda (SPRS-NU) Livelihood and Labor Market Relevant Skills Development for Refugees & Host Communities",
+         "ShortName":"EUTF SPRS-NU",
+         "ActualStartDate":"2016-07-01",
+         "interventionPartnerInstitutions":[
+            {
+               "PartnerInstitutionOrganisationID":491
+            }
+         ],
+         "lastActionComment":{
+            "3":null,
+            "4":null
+         },
+         "workflowStateId":37,
+         "InterventionCountryID":1113,
+         "ExternalReferenceNumber":"T05 – EUTF – HOA – UG – 07",
+         "InterventionInstanceId":864,
+         "SAEndDate":"2021-11-30",
+         "CommericalName":"Support to the Implementation of the Skilling Uganda Strategy",
+         "UpdatedUserID":1001176,
+         "MasterID":184
+      },
+      {
+         "ActualEndDate":"2023-06-30",
+         "InterventionCode":"UGA160331T",
+         "Description":"This project aims to add the Karamoja region as another region of intervention to the existing UGA 1402711 intervention. It is funded with the support from the Irish Government.",
+         "InterventionProgrammeInstanceID":null,
+         "InterventionID":21084,
+         "DateUpdated":1638354093000,
+         "Title":"The support to skilling uganda intervention (SSU) in the Karamoja region",
+         "ShortName":"Skilling Karamoja",
+         "ActualStartDate":"2016-08-01",
+         "interventionPartnerInstitutions":[
+            {
+               "PartnerInstitutionOrganisationID":396
+            },
+            {
+               "PartnerInstitutionOrganisationID":395
+            }
+         ],
+         "lastActionComment":{
+            "3":null,
+            "4":null
+         },
+         "workflowStateId":33,
+         "InterventionCountryID":1113,
+         "ExternalReferenceNumber":"",
+         "InterventionInstanceId":865,
+         "SAEndDate":"2023-06-30",
+         "CommericalName":"support to the implementation of the skilling Uganda Strategy-Karamoja Region",
+         "UpdatedUserID":1001271,
+         "MasterID":185
+      },
+      {
+         "ActualEndDate":"2023-07-30",
+         "InterventionCode":"MOZ21001",
+         "Description":"IF Mozambique builds strong national institutions and coordination mechanisms and more strongly engages the private sector in the planning process, THEN Mozambique will be able to mobilize more climate finance for the implementation of its NDC BECAUSE more effective and efficient use will be made of the climate finance and private sector investment opportunities that exist and climate finance proposals will be better tailored to the national circumstances.",
+         "InterventionProgrammeInstanceID":null,
+         "InterventionID":21083,
+         "DateUpdated":1638352719000,
+         "Title":"GCF Readiness Proposal for Mozambique",
+         "ShortName":"GCF Readiness",
+         "ActualStartDate":"2022-01-31",
+         "interventionPartnerInstitutions":[
+            {
+               "PartnerInstitutionOrganisationID":565
+            }
+         ],
+         "lastActionComment":{
+            "3":null,
+            "4":null
+         },
+         "workflowStateId":21,
+         "InterventionCountryID":1120,
+         "ExternalReferenceNumber":null,
+         "InterventionInstanceId":1178,
+         "SAEndDate":"2023-07-30",
+         "CommericalName":"",
+         "UpdatedUserID":1000202,
+         "MasterID":854
+      },
+      {
+         "ActualEndDate":"2022-02-28",
+         "InterventionCode":"MOZ19001",
+         "Description":"Enabel proposes a wider reaching and crosscutting project aimed at climate-smart access to safe and affordable drinking water for vulnerable populations in Gaza Province - Mozambique through the combination of renewable energy, desalination where required, empowerment of communities and involvement of local economic stakeholders in the establishment, management and operation of water supply net-works. The vulnerability of the selected communities to climate change due to their low-lying topography, lack of general infrastructures, and prolonged droughts as well as occasional floods is exacerbated by the increased pressure on natural resources due to the recent resettlement of people displaced by previous floods in 2000 and 2013. The complexity of these factors compelled Enabel to opt for an innovative systemic approach to improve climate-resilient access to water and sanitation with climate co-benefits by investing in climate adaptation as well as mitigation.",
+         "InterventionProgrammeInstanceID":null,
+         "InterventionID":21082,
+         "DateUpdated":1638350843000,
+         "Title":"Climate-Smart Development in Mozambique: Using Renewable Energy for Sustainable Access to Safe and Affordable Drinking Water in Gaza Province",
+         "ShortName":"CLISMADEV",
+         "ActualStartDate":"2019-05-01",
+         "interventionPartnerInstitutions":[
+            {
+               "PartnerInstitutionOrganisationID":492
+            }
+         ],
+         "lastActionComment":{
+            "3":null,
+            "4":null
+         },
+         "workflowStateId":33,
+         "InterventionCountryID":1120,
+         "ExternalReferenceNumber":"",
+         "InterventionInstanceId":1031,
+         "SAEndDate":"2022-02-28",
+         "CommericalName":"Climate-Smart Development in Mozambique: Using Renewable Energy for Sustainable Access to Safe and Affordable Drinking Water in Gaza Province",
+         "UpdatedUserID":1000202,
+         "MasterID":532
+      },
+      {
+         "ActualEndDate":"2020-11-17",
+         "InterventionCode":"GIN1600411",
+         "Description":"Le projet d’Appui au développement agricole dans la zone de Kindia-Mamou (DAKMA) vise à « mettre en œuvre, dans la zone de Kindia-Mamou, des actions de court et moyen terme à même de renforcer l’efficacité des filières riz, maraîchage et fruits ».\n\nCompte tenu des impératifs de cette phase de démarrage dans le secteur agricole (rapidité de mise en œuvre, visibilité des actions et articulation possible de celles-ci avec le programme structurel à venir), le projet va intervenir prioritairement dans des sites présentant de bonnes potentialités agricoles et un niveau d’organisation des organisations paysannes capables de les mettre en valeur et de les gérer dans la durée. Tous les sites identifiés, situés dans les trois préfectures de Kindia, Mamou et Dalaba, vont faire l’objet d’investissements structurants qui peuvent jouer un effet de levier pour le développement des filières : sur l’amont en particulier via des aménagements hydro-agricoles (AHA)  et sur l’aval pour tout ce qui concerne les opérations post-récolte et l’accès aux marchés (avec une dimension de désenclavement via la réhabilitation de pistes rurales et d’ouvrages de franchissement).",
+         "InterventionProgrammeInstanceID":null,
+         "InterventionID":21078,
+         "DateUpdated":1638282495000,
+         "Title":"Appui au développement agricole dans la zone de Kindia-Mamou - DAKMA",
+         "ShortName":"DAKMA",
+         "ActualStartDate":"2016-11-17",
+         "interventionPartnerInstitutions":[
+            {
+               "PartnerInstitutionOrganisationID":398
+            },
+            {
+               "PartnerInstitutionOrganisationID":399
+            },
+            {
+               "PartnerInstitutionOrganisationID":400
+            },
+            {
+               "PartnerInstitutionOrganisationID":401
+            },
+            {
+               "PartnerInstitutionOrganisationID":402
+            }
+         ],
+         "lastActionComment":{
+            "3":null,
+            "4":null
+         },
+         "workflowStateId":38,
+         "InterventionCountryID":1123,
+         "ExternalReferenceNumber":"3017783",
+         "InterventionInstanceId":729,
+         "SAEndDate":"2020-11-17",
+         "CommericalName":"DAKMA",
+         "UpdatedUserID":1001176,
+         "MasterID":49
+      },
+      {
+         "ActualEndDate":"2026-12-31",
+         "InterventionCode":"PSE21001",
+         "Description":"Portfolio Palestine",
+         "InterventionProgrammeInstanceID":null,
+         "InterventionID":21076,
+         "DateUpdated":1638277915000,
+         "Title":"Portfolio Palestine",
+         "ShortName":null,
+         "ActualStartDate":"2021-01-01",
+         "interventionPartnerInstitutions":[
+            
+         ],
+         "lastActionComment":{
+            "3":null,
+            "4":null
+         },
+         "workflowStateId":34,
+         "InterventionCountryID":1117,
+         "ExternalReferenceNumber":"NN3979",
+         "InterventionInstanceId":1154,
+         "SAEndDate":"2026-12-31",
+         "CommericalName":null,
+         "UpdatedUserID":1001271,
+         "MasterID":806
+      },
+      {
+         "ActualEndDate":"2023-07-16",
+         "InterventionCode":"PZA1203211",
+         "Description":"The Phase IV schools construction project aims at improving the access to quality education through the development of an healthy, safe, child and environmentally friendly infrastructure.\nIt will build, extend and rehabilitate schools and will focus on quality through an environment and child friendly design while experimenting innovative and eco-sustainable solutions.\nThe project will also invest in capacity building for designers and teachers, and organize activities for students and communities benefiting from the new schools.\nSpecial attention will be paid to interactions between schools and communities, to gender, and to energy efficiency and other environment-related aspects.\n\nThe project inserts itself in the MoE's ‘Education Development Strategic Plan’, more specifically in goal I, to ‘increase access of school-aged children and students of all education levels and improve the ability of the education system to retain them’.",
+         "InterventionProgrammeInstanceID":null,
+         "InterventionID":21075,
+         "DateUpdated":1638271307000,
+         "Title":"Schools Construction, Rehabilitation and Equipment in the Occupied Palestinian Territory - PHASE IV",
+         "ShortName":"Schools IV",
+         "ActualStartDate":"2013-07-17",
+         "interventionPartnerInstitutions":[
+            {
+               "PartnerInstitutionOrganisationID":361
+            },
+            {
+               "PartnerInstitutionOrganisationID":455
+            },
+            {
+               "PartnerInstitutionOrganisationID":737
+            }
+         ],
+         "lastActionComment":{
+            "3":null,
+            "4":null
+         },
+         "workflowStateId":33,
+         "InterventionCountryID":1117,
+         "ExternalReferenceNumber":"3013739",
+         "InterventionInstanceId":795,
+         "SAEndDate":"2023-07-16",
+         "CommericalName":"Schools Construction Phase IV",
+         "UpdatedUserID":1001176,
+         "MasterID":115
+      }
+   ],
+   "meta":{
+      "totalRowCount":392
+   }
+}

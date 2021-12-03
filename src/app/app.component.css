@@ -1,0 +1,13 @@
+.box {
+  display: flex;
+  align-content: space-around;
+  min-width: 70%;
+}
+
+
+.box table {
+  flex-grow: 2;
+}
+.box div {
+  flex-grow: 1;
+}

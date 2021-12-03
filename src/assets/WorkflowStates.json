@@ -1,0 +1,275 @@
+{
+   "data": [{
+      "DeletedBy": null,
+      "Description": {
+         "3": "",
+         "4": ""
+      },
+      "DueDays": null,
+      "WFSTATEID": 20,
+      "name": {
+         "3": "OPPORTUNITY",
+         "4": "OPPORTUNITE"
+      },
+      "DeletedOn": null,
+      "StatePhaseID": null,
+      "IsFinal": null,
+      "WFPROCESSID": 5
+   },
+      {
+         "DeletedBy": null,
+         "Description": {
+            "3": "",
+            "4": ""
+         },
+         "DueDays": null,
+         "WFSTATEID": 21,
+         "name": {
+            "3": "IDENTIFICATION",
+            "4": "IDENTIFICATION"
+         },
+         "DeletedOn": null,
+         "StatePhaseID": null,
+         "IsFinal": null,
+         "WFPROCESSID": 5
+      },
+      {
+         "DeletedBy": null,
+         "Description": {
+            "3": "Initial State",
+            "4": "Initial State"
+         },
+         "DueDays": null,
+         "WFSTATEID": 24,
+         "name": {
+            "3": "OPENED",
+            "4": "OUVERT"
+         },
+         "DeletedOn": null,
+         "StatePhaseID": null,
+         "IsFinal": null,
+         "WFPROCESSID": 7
+      },
+      {
+         "DeletedBy": null,
+         "Description": {
+            "3": "",
+            "4": ""
+         },
+         "DueDays": null,
+         "WFSTATEID": 27,
+         "name": {
+            "3": "VERIFIED",
+            "4": "VÉRIFIÉ"
+         },
+         "DeletedOn": null,
+         "StatePhaseID": null,
+         "IsFinal": null,
+         "WFPROCESSID": 7
+      },
+      {
+         "DeletedBy": null,
+         "Description": {
+            "3": "",
+            "4": ""
+         },
+         "DueDays": null,
+         "WFSTATEID": 28,
+         "name": {
+            "3": "PENDING",
+            "4": "EN ATTENTE"
+         },
+         "DeletedOn": null,
+         "StatePhaseID": null,
+         "IsFinal": null,
+         "WFPROCESSID": 8
+      },
+      {
+         "DeletedBy": null,
+         "Description": {
+            "3": "",
+            "4": ""
+         },
+         "DueDays": null,
+         "WFSTATEID": 29,
+         "name": {
+            "3": "SUBMITTED",
+            "4": "SOUMIS"
+         },
+         "DeletedOn": null,
+         "StatePhaseID": null,
+         "IsFinal": null,
+         "WFPROCESSID": 8
+      },
+      {
+         "DeletedBy": null,
+         "Description": {
+            "3": "",
+            "4": ""
+         },
+         "DueDays": null,
+         "WFSTATEID": 30,
+         "name": {
+            "3": "VERIFIED",
+            "4": "VÉRIFIÉ"
+         },
+         "DeletedOn": null,
+         "StatePhaseID": null,
+         "IsFinal": null,
+         "WFPROCESSID": 8
+      },
+      {
+         "DeletedBy": null,
+         "Description": {
+            "3": "",
+            "4": ""
+         },
+         "DueDays": null,
+         "WFSTATEID": 31,
+         "name": {
+            "3": "REOPENED",
+            "4": "ROUVERT"
+         },
+         "DeletedOn": null,
+         "StatePhaseID": null,
+         "IsFinal": null,
+         "WFPROCESSID": 8
+      },
+      {
+         "DeletedBy": null,
+         "Description": {
+            "3": "",
+            "4": ""
+         },
+         "DueDays": null,
+         "WFSTATEID": 33,
+         "name": {
+            "3": "EXECUTION",
+            "4": "EXECUTION"
+         },
+         "DeletedOn": null,
+         "StatePhaseID": null,
+         "IsFinal": null,
+         "WFPROCESSID": 5
+      },
+      {
+         "DeletedBy": null,
+         "Description": {
+            "3": "",
+            "4": ""
+         },
+         "DueDays": null,
+         "WFSTATEID": 34,
+         "name": {
+            "3": "FORMULATION",
+            "4": "FORMULATION"
+         },
+         "DeletedOn": null,
+         "StatePhaseID": null,
+         "IsFinal": null,
+         "WFPROCESSID": 5
+      },
+      {
+         "DeletedBy": null,
+         "Description": {
+            "3": "",
+            "4": ""
+         },
+         "DueDays": null,
+         "WFSTATEID": 35,
+         "name": {
+            "3": "TERMINATED",
+            "4": "ARRETE"
+         },
+         "DeletedOn": null,
+         "StatePhaseID": null,
+         "IsFinal": null,
+         "WFPROCESSID": 5
+      },
+      {
+         "DeletedBy": null,
+         "Description": {
+            "3": "",
+            "4": ""
+         },
+         "DueDays": null,
+         "WFSTATEID": 36,
+         "name": {
+            "3": "SUSPENDED",
+            "4": "SUSPENDU"
+         },
+         "DeletedOn": null,
+         "StatePhaseID": null,
+         "IsFinal": null,
+         "WFPROCESSID": 5
+      },
+      {
+         "DeletedBy": null,
+         "Description": {
+            "3": "",
+            "4": ""
+         },
+         "DueDays": null,
+         "WFSTATEID": 37,
+         "name": {
+            "3": "EXPIRED",
+            "4": "EXPIRE"
+         },
+         "DeletedOn": null,
+         "StatePhaseID": null,
+         "IsFinal": null,
+         "WFPROCESSID": 5
+      },
+      {
+         "DeletedBy": null,
+         "Description": {
+            "3": "",
+            "4": ""
+         },
+         "DueDays": null,
+         "WFSTATEID": 38,
+         "name": {
+            "3": "CLOSED",
+            "4": "CLOTURE"
+         },
+         "DeletedOn": null,
+         "StatePhaseID": null,
+         "IsFinal": null,
+         "WFPROCESSID": 5
+      },
+      {
+         "DeletedBy": null,
+         "Description": {
+            "3": "",
+            "4": ""
+         },
+         "DueDays": null,
+         "WFSTATEID": 39,
+         "name": {
+            "3": "COMPLETED",
+            "4": "TERMINE"
+         },
+         "DeletedOn": null,
+         "StatePhaseID": null,
+         "IsFinal": null,
+         "WFPROCESSID": 5
+      },
+      {
+         "DeletedBy": null,
+         "Description": {
+            "3": "",
+            "4": ""
+         },
+         "DueDays": null,
+         "WFSTATEID": 40,
+         "name": {
+            "3": "ABORTED",
+            "4": "AVORTE"
+         },
+         "DeletedOn": null,
+         "StatePhaseID": null,
+         "IsFinal": null,
+         "WFPROCESSID": 5
+      }
+   ]
+}

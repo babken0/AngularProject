@@ -15,7 +15,7 @@ type UpdatedUser = {
 }
 
 
-class Project{
+class ProjectModel{
 
   constructor(
     private interventionCode:string,

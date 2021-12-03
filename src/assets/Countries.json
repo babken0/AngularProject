@@ -1,0 +1,459 @@
+{"data": [
+   {
+      "CountryId": 1125,
+      "DeletedBy": null,
+      "ISOcode": "DZA",
+      "name": {
+         "3": "Algeria",
+         "4": "Algérie"
+      },
+      "DeletedOn": null,
+      "Level": 2,
+      "HasSpecificZone": false
+   },
+   {
+      "CountryId": 1147,
+      "DeletedBy": null,
+      "ISOcode": "AGO",
+      "name": {
+         "3": "Angola",
+         "4": "Angola"
+      },
+      "DeletedOn": null,
+      "Level": 3,
+      "HasSpecificZone": false
+   },
+   {
+      "CountryId": 1130,
+      "DeletedBy": null,
+      "ISOcode": "BEL",
+      "name": {
+         "3": "Belgium",
+         "4": "Belgique"
+      },
+      "DeletedOn": null,
+      "Level": 4,
+      "HasSpecificZone": false
+   },
+   {
+      "CountryId": 1129,
+      "DeletedBy": null,
+      "ISOcode": "BEN",
+      "name": {
+         "3": "Benin",
+         "4": "Bénin"
+      },
+      "DeletedOn": null,
+      "Level": 2,
+      "HasSpecificZone": true
+   },
+   {
+      "CountryId": 1127,
+      "DeletedBy": null,
+      "ISOcode": "BOL",
+      "name": {
+         "3": "Bolivia",
+         "4": "Bolivie"
+      },
+      "DeletedOn": null,
+      "Level": 3,
+      "HasSpecificZone": false
+   },
+   {
+      "CountryId": 1128,
+      "DeletedBy": null,
+      "ISOcode": "BFA",
+      "name": {
+         "3": "Burkina Faso",
+         "4": "Burkina Faso"
+      },
+      "DeletedOn": null,
+      "Level": 3,
+      "HasSpecificZone": false
+   },
+   {
+      "CountryId": 1131,
+      "DeletedBy": null,
+      "ISOcode": "BDI",
+      "name": {
+         "3": "Burundi",
+         "4": "Burundi"
+      },
+      "DeletedOn": null,
+      "Level": 3,
+      "HasSpecificZone": true
+   },
+   {
+      "CountryId": 1144,
+      "DeletedBy": null,
+      "ISOcode": "CPV",
+      "name": {
+         "3": "Cape Verde",
+         "4": "Cap-Vert"
+      },
+      "DeletedOn": null,
+      "Level": 3,
+      "HasSpecificZone": false
+   },
+   {
+      "CountryId": 1141,
+      "DeletedBy": null,
+      "ISOcode": "CAF",
+      "name": {
+         "3": "Central African Republic",
+         "4": "République centrafricaine"
+      },
+      "DeletedOn": null,
+      "Level": 3,
+      "HasSpecificZone": false
+   },
+   {
+      "CountryId": 1126,
+      "DeletedBy": null,
+      "ISOcode": "COD",
+      "name": {
+         "3": "Democratic Republic of the Congo",
+         "4": "République démocratique du Congo"
+      },
+      "DeletedOn": null,
+      "Level": 3,
+      "HasSpecificZone": false
+   },
+   {
+      "CountryId": 1124,
+      "DeletedBy": null,
+      "ISOcode": "ECU",
+      "name": {
+         "3": "Ecuador",
+         "4": "Équateur"
+      },
+      "DeletedOn": null,
+      "Level": 2,
+      "HasSpecificZone": false
+   },
+   {
+      "CountryId": 1137,
+      "DeletedBy": null,
+      "ISOcode": "GMB",
+      "name": {
+         "3": "Gambia",
+         "4": "Gambia"
+      },
+      "DeletedOn": null,
+      "Level": 0,
+      "HasSpecificZone": false
+   },
+   {
+      "CountryId": 1138,
+      "DeletedBy": null,
+      "ISOcode": "GHA",
+      "name": {
+         "3": "Ghana",
+         "4": "Ghana"
+      },
+      "DeletedOn": null,
+      "Level": 0,
+      "HasSpecificZone": false
+   },
+   {
+      "CountryId": 1134,
+      "DeletedBy": null,
+      "ISOcode": "GRC",
+      "name": {
+         "3": "Greece",
+         "4": "Grèce"
+      },
+      "DeletedOn": null,
+      "Level": 0,
+      "HasSpecificZone": false
+   },
+   {
+      "CountryId": 1123,
+      "DeletedBy": null,
+      "ISOcode": "GIN",
+      "name": {
+         "3": "Guinea",
+         "4": "Guinée"
+      },
+      "DeletedOn": null,
+      "Level": 3,
+      "HasSpecificZone": false
+   },
+   {
+      "CountryId": 1143,
+      "DeletedBy": null,
+      "ISOcode": "GNB",
+      "name": {
+         "3": "Guinea-Bissau",
+         "4": "Guinée-Bissau"
+      },
+      "DeletedOn": null,
+      "Level": 3,
+      "HasSpecificZone": false
+   },
+   {
+      "CountryId": 1140,
+      "DeletedBy": null,
+      "ISOcode": "IDN",
+      "name": {
+         "3": "Indonesia",
+         "4": "Indonésie"
+      },
+      "DeletedOn": null,
+      "Level": 0,
+      "HasSpecificZone": false
+   },
+   {
+      "CountryId": 1139,
+      "DeletedBy": null,
+      "ISOcode": "CIV",
+      "name": {
+         "3": "Ivory Coast",
+         "4": "Ivory Coast"
+      },
+      "DeletedOn": null,
+      "Level": 0,
+      "HasSpecificZone": false
+   },
+   {
+      "CountryId": 1142,
+      "DeletedBy": null,
+      "ISOcode": "JOR",
+      "name": {
+         "3": "Jordan",
+         "4": "Jordanie"
+      },
+      "DeletedOn": null,
+      "Level": 3,
+      "HasSpecificZone": false
+   },
+   {
+      "CountryId": 1136,
+      "DeletedBy": null,
+      "ISOcode": "KEN",
+      "name": {
+         "3": "Kenya",
+         "4": "Kenya"
+      },
+      "DeletedOn": null,
+      "Level": 0,
+      "HasSpecificZone": false
+   },
+   {
+      "CountryId": 1135,
+      "DeletedBy": null,
+      "ISOcode": "MDG",
+      "name": {
+         "3": "Madagascar",
+         "4": "Madagascar"
+      },
+      "DeletedOn": null,
+      "Level": 0,
+      "HasSpecificZone": false
+   },
+   {
+      "CountryId": 1121,
+      "DeletedBy": null,
+      "ISOcode": "MLI",
+      "name": {
+         "3": "Mali",
+         "4": "Mali"
+      },
+      "DeletedOn": null,
+      "Level": 3,
+      "HasSpecificZone": true
+   },
+   {
+      "CountryId": 1133,
+      "DeletedBy": null,
+      "ISOcode": "MRT",
+      "name": {
+         "3": "Mauritania",
+         "4": "Mauritanie"
+      },
+      "DeletedOn": null,
+      "Level": 2,
+      "HasSpecificZone": false
+   },
+   {
+      "CountryId": 1122,
+      "DeletedBy": null,
+      "ISOcode": "MAR",
+      "name": {
+         "3": "Morocco",
+         "4": "Maroc"
+      },
+      "DeletedOn": null,
+      "Level": 3,
+      "HasSpecificZone": false
+   },
+   {
+      "CountryId": 1120,
+      "DeletedBy": null,
+      "ISOcode": "MOZ",
+      "name": {
+         "3": "Mozambique",
+         "4": "Mozambique"
+      },
+      "DeletedOn": null,
+      "Level": 3,
+      "HasSpecificZone": false
+   },
+   {
+      "CountryId": 1119,
+      "DeletedBy": null,
+      "ISOcode": "NER",
+      "name": {
+         "3": "Niger",
+         "4": "Niger"
+      },
+      "DeletedOn": null,
+      "Level": 3,
+      "HasSpecificZone": false
+   },
+   {
+      "CountryId": 1117,
+      "DeletedBy": null,
+      "ISOcode": "PSE",
+      "name": {
+         "3": "Palestine",
+         "4": "Palestine"
+      },
+      "DeletedOn": null,
+      "Level": 2,
+      "HasSpecificZone": false
+   },
+   {
+      "CountryId": 1118,
+      "DeletedBy": null,
+      "ISOcode": "PER",
+      "name": {
+         "3": "Peru",
+         "4": "Pérou"
+      },
+      "DeletedOn": null,
+      "Level": 2,
+      "HasSpecificZone": false
+   },
+   {
+      "CountryId": 1116,
+      "DeletedBy": null,
+      "ISOcode": "RWA",
+      "name": {
+         "3": "Rwanda",
+         "4": "Rwanda"
+      },
+      "DeletedOn": null,
+      "Level": 3,
+      "HasSpecificZone": false
+   },
+   {
+      "CountryId": 1115,
+      "DeletedBy": null,
+      "ISOcode": "SEN",
+      "name": {
+         "3": "Senegal",
+         "4": "Sénégal"
+      },
+      "DeletedOn": null,
+      "Level": 4,
+      "HasSpecificZone": true
+   },
+   {
+      "CountryId": 1111,
+      "DeletedBy": null,
+      "ISOcode": "ZAF",
+      "name": {
+         "3": "South Africa",
+         "4": "Afrique du Sud"
+      },
+      "DeletedOn": null,
+      "Level": 3,
+      "HasSpecificZone": false
+   },
+   {
+      "CountryId": 1148,
+      "DeletedBy": null,
+      "ISOcode": "LKA",
+      "name": {
+         "3": "Sri Lanka",
+         "4": "Sri Lanka"
+      },
+      "DeletedOn": null,
+      "Level": 3,
+      "HasSpecificZone": false
+   },
+   {
+      "CountryId": 1114,
+      "DeletedBy": null,
+      "ISOcode": "TZA",
+      "name": {
+         "3": "Tanzania",
+         "4": "Tanzanie"
+      },
+      "DeletedOn": null,
+      "Level": 3,
+      "HasSpecificZone": false
+   },
+   {
+      "CountryId": 1132,
+      "DeletedBy": null,
+      "ISOcode": null,
+      "name": {
+         "3": "The World",
+         "4": "Le Monde"
+      },
+      "DeletedOn": null,
+      "Level": null,
+      "HasSpecificZone": false
+   },
+   {
+      "CountryId": 1145,
+      "DeletedBy": null,
+      "ISOcode": "TUN",
+      "name": {
+         "3": "Tunesia",
+         "4": "Tunisie"
+      },
+      "DeletedOn": null,
+      "Level": 3,
+      "HasSpecificZone": false
+   },
+   {
+      "CountryId": 1113,
+      "DeletedBy": null,
+      "ISOcode": "UGA",
+      "name": {
+         "3": "Uganda",
+         "4": "Ouganda"
+      },
+      "DeletedOn": null,
+      "Level": 4,
+      "HasSpecificZone": false
+   },
+   {
+      "CountryId": 1112,
+      "DeletedBy": null,
+      "ISOcode": "VNM",
+      "name": {
+         "3": "Vietnam",
+         "4": "Vietnam"
+      },
+      "DeletedOn": null,
+      "Level": 2,
+      "HasSpecificZone": false
+   },
+   {
+      "CountryId": 1146,
+      "DeletedBy": null,
+      "ISOcode": "ZWE",
+      "name": {
+         "3": "Zimbabwe",
+         "4": "Zimbabwe"
+      },
+      "DeletedOn": null,
+      "Level": 3,
+      "HasSpecificZone": false
+   }
+]
+}

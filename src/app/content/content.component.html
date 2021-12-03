@@ -1,0 +1,27 @@
+<div class="content">
+  <div class="boxes"></div>
+  <table>
+    <thead>
+    <tr>
+      <th>Code of the intervention</th>
+      <th>Short Name</th>
+      <th>Official Intervention Name</th>
+      <th>Country</th>
+      <th>Status</th>
+      <th>Last Updated By</th>
+      <th>Last Updated On</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor = "let data of getResponseData()">
+      <td>{{data.InterventionCode}}</td>
+      <td>{{data.ShortName}}</td>
+      <td>{{data.Title}}</td>
+      <td>{{data.InterventionCode}}</td>
+      <td>{{data.InterventionCode}}</td>
+      <td>{{data.InterventionCode}}</td>
+      <td>{{convertToDate(data.DateUpdated)}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
