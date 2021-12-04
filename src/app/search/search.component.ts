@@ -16,6 +16,7 @@ export class SearchComponent implements OnInit,OnChanges {
   constructor(private countryService:CountryService) {
     this.countriesList = this.getCountries();
     this.formGroup = this.createFormGroup()
+    //console.log(this.formGroup.controls["keyword"])
   }
 
 

@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {ResponseService} from "../services/response.service";
 import {ProjectModel} from "../models/Project.model";
 import {CountryService} from "../services/country.service";
@@ -12,7 +12,7 @@ import {FormGroup} from "@angular/forms";
   templateUrl: './content.component.html',
   styleUrls: ['./content.component.css']
 })
-export class ContentComponent implements OnInit {
+export class ContentComponent implements OnInit,OnChanges {
   @Input() formGroup!:FormGroup
 
   constructor(
@@ -23,7 +23,12 @@ export class ContentComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    //console.log(this.formGroup.controls["country"]);
+    console.log(this.formGroup.controls["country"].value);
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log(this.formGroup.controls["country"].value);
+
   }
 
   getResponseData(): ProjectModel[]{
@@ -37,6 +42,7 @@ export class ContentComponent implements OnInit {
   getStatusById(id:number){
     return this.statusService.getStatusById(id)?.name[3]
   }
+
 
 
 }

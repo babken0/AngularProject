@@ -11,21 +11,15 @@ import {FormGroup} from "@angular/forms";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements AfterViewInit{
-   @ViewChild (SearchComponent)
-   searchComponent!:SearchComponent;
+export class AppComponent {
 
-   //form!: FormGroup
+   form!: FormGroup
 
 
   constructor(private countryService:CountryService) {
 
   }
 
-  ngAfterViewInit(): void {
-    //this.form = this.searchComponent.formGroup;
-   // console.log(this.form)
-  }
 
 
 

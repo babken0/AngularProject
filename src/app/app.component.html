@@ -1,8 +1,8 @@
 <div class="box">
   <div class="outer">
-    <app-search></app-search>
+    <app-search #searchComponent></app-search>
   </div>
   <div class="inner">
-    <app-content ></app-content>
+    <app-content [formGroup]="searchComponent.formGroup"></app-content>
   </div>
 </div>
