@@ -1,48 +1,51 @@
 <div class="searchBar">
-  <div class="buttons">
-    <button class="searchBtn">Search</button>
-    <button class="resetBtn">Reset</button>
-  </div>
-  <div class="country">
-    <label for="country">Country</label><br>
-    <select name="country" id="country">
-      <option  *ngFor = "let country of countriesNameList">{{ country }}</option>
-    </select>
-  </div>
-  <div class="keyword" >
-    <label for=" keyword">Keyword</label><br>
-    <input class="special" type="text" id=" keyword">
-  </div>
-  <div class="checkboxes">
-    <div>
-      <input type="checkbox" id="codeOfTheIntervention" name="codeOfTheIntervention" >
-      <label for="codeOfTheIntervention">Code of the Intervention</label>
+  <form action="" [formGroup]="formGroup">
+    <div class="buttons">
+      <input type="submit" class="searchBtn" value="Search">
+      <input type="reset" class="resetBtn" value="Reset" >
     </div>
+    <div class="country">
+      <label for="country">Country</label><br>
+      <select name="country" id="country" formControlName="country">
+        <option  [id]="country.CountryId"  *ngFor = "let country of countriesList">{{ country.name["3"] }}</option>
+      </select>
+    </div>
+    <div class="keyword" >
+      <label for=" keyword">Keyword</label><br>
+      <input class="special" type="text" id=" keyword" formControlName="keyword">
+    </div>
+    <div class="checkboxes">
+      <div>
+        <input type="checkbox" id="codeOfTheIntervention" name="codeOfTheIntervention" formControlName="codeOfIntervention">
+        <label for="codeOfTheIntervention">Code of the Intervention</label>
+      </div>
 
-    <div>
-      <input type="checkbox" id="titleOfTheIntervention" name="titleOfTheIntervention">
-      <label for="titleOfTheIntervention">Title of the Intervention</label>
-    </div>
+      <div>
+        <input type="checkbox" id="titleOfTheIntervention" name="titleOfTheIntervention" formControlName="titleOfIntervention">
+        <label for="titleOfTheIntervention">Title of the Intervention</label>
+      </div>
 
-    <div>
-      <input type="checkbox" id="interventionShortName" name="interventionShortName">
-      <label for="interventionShortName">Intervention short name</label>
-    </div>
+      <div>
+        <input type="checkbox" id="interventionShortName" name="interventionShortName" formControlName="interventionShortName">
+        <label for="interventionShortName">Intervention short name</label>
+      </div>
 
-    <div>
-      <input type="checkbox" id="interventionDescription" name="interventionDescription">
-      <label for="interventionDescription">Intervention description</label>
+      <div>
+        <input type="checkbox" id="interventionDescription" name="interventionDescription" formControlName="interventionDescription">
+        <label for="interventionDescription">Intervention description</label>
+      </div>
     </div>
-  </div>
-  <h2>Actual Start Date</h2>
-  <div class="date">
-    <div class="fromDate">
-      <label for="fromDate">From</label><br>
-      <input class="special" type="date" id="fromDate" >
+    <h2>Actual Start Date</h2>
+    <div class="date">
+      <div class="fromDate">
+        <label for="fromDate">From</label><br>
+        <input class="special" type="date" id="fromDate" formControlName="startDateFrom" >
+      </div>
+      <div class="toDate">
+        <label for="toDate">To</label><br>
+        <input class="special" type="date" name="toDate" id="toDate" formControlName="startDateTo">
+      </div>
     </div>
-    <div class="toDate">
-      <label for="toDate">To</label><br>
-      <input class="special" type="date" name="toDate" id="toDate">
-    </div>
-  </div>
+  </form>
+
 </div>

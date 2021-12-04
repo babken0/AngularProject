@@ -19,7 +19,7 @@
       <td>{{data.Title}}</td>
       <td>{{getCountryById(data.InterventionCountryID)}}</td>
       <td>{{getStatusById(data.workflowStateId)}}</td>
-      <td>{{getUserById(data.UpdatedUserID)}}</td>
+      <td>{{data.UpdatedUserID| user}}</td>
       <td>{{data.DateUpdated | date:'d/M/yy'}}</td>
     </tr>
     </tbody>

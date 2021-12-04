@@ -1,11 +1,15 @@
 .searchBar{
   /*margin: 10px 30px;*/
-  /*border: 1px solid blue;*/
+  min-width: 200px;
   padding: 10px 20px;
+  border-top: 1px solid gray;
+  border-radius: 8px;
+  box-shadow: -3px 5px 5px;
 
 }
 .searchBar * {
   margin-bottom: 30px;
+
 }
 
 .buttons{

@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import {AfterViewInit, Component, Input, ViewChild} from '@angular/core';
 
 import {CountryService} from "./services/country.service";
+import {SearchComponent} from "./search/search.component";
+import {FormGroup} from "@angular/forms";
 
 
 
@@ -9,11 +11,22 @@ import {CountryService} from "./services/country.service";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit{
+   @ViewChild (SearchComponent)
+   searchComponent!:SearchComponent;
+
+   //form!: FormGroup
+
 
   constructor(private countryService:CountryService) {
 
   }
+
+  ngAfterViewInit(): void {
+    //this.form = this.searchComponent.formGroup;
+   // console.log(this.form)
+  }
+
 
 
 }
