@@ -86,9 +86,8 @@ export class SearchComponent implements OnInit,OnChanges,DoCheck {
 
 
 
-  filterByCountryId(event:any){
-    let countryId = +event.target.value;
-    console.log(countryId)
+  filterByCountryId(countryId:number){
+
     if (countryId == 0){
       this.filterProjectList = this.projectList
       console.log("all country")
