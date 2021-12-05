@@ -1,5 +1,16 @@
 <div class="content">
-  <div class="boxes"></div>
+  <div class="filter-add">
+    <div class="select">
+      <label for="status" >Status</label>
+      <select name="status" id="status"  (change)="onChange($event)" >
+        <option value="0">All statuses</option>
+        <option  [value]="status" *ngFor = "let status of getDataStatuses()">{{(status|statusPipe).name["3"]}}</option>
+      </select>
+    </div>
+
+
+    <button>Create New Intervention</button>
+  </div>
   <table>
     <thead>
     <tr>
@@ -13,7 +24,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor = "let data of getResponseData()">
+    <tr *ngFor = "let data of filterProjectList">
       <td>{{data.InterventionCode}}</td>
       <td>{{data.ShortName}}</td>
       <td>{{data.Title}}</td>

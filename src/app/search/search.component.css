@@ -26,6 +26,14 @@
   color: white;
 }
 
+.country select, .keyword input {
+  width: 200px;
+  padding: 8px 5px;
+  border-radius: 5px;
+  border: 1px solid grey;
+  margin: 5px 0 0 5px;
+}
+
 .special{
   /*margin-left: 15px;*/
   width:50%;

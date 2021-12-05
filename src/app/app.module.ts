@@ -7,6 +7,7 @@ import {ContentComponent} from "./content/content.component";
 import {CommonModule} from "@angular/common";
 import { UserPipe } from './pipes/user.pipe';
 import {ReactiveFormsModule} from "@angular/forms";
+import {StatusPipe } from './pipes/statusPipe.pipe';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import {ReactiveFormsModule} from "@angular/forms";
     AppComponent,
     SearchComponent,
     ContentComponent,
-    UserPipe
+    UserPipe,
+    StatusPipe
   ],
   imports: [
     BrowserModule,

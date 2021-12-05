@@ -1,13 +1,14 @@
 <div class="searchBar">
   <form action="" [formGroup]="formGroup">
     <div class="buttons">
-      <input type="submit" class="searchBtn" value="Search">
+      <button type="submit" class="searchBtn" (click)="onSearch()">search</button>
       <input type="reset" class="resetBtn" value="Reset" >
     </div>
     <div class="country">
       <label for="country">Country</label><br>
       <select name="country" id="country" formControlName="country">
-        <option  [id]="country.CountryId"  *ngFor = "let country of countriesList">{{ country.name["3"] }}</option>
+        <option [attr.value]="0"  >AllCountries</option>
+        <option  [value]="country.CountryId"  *ngFor = "let country of countriesList">{{ country.name["3"] }}</option>
       </select>
     </div>
     <div class="keyword" >
