@@ -16,6 +16,7 @@ import {StatusService} from "../services/status.service";
 import {UserService} from "../services/user.service";
 import {FormGroup} from "@angular/forms";
 import {ProjectService} from "../services/project.service";
+import {SearchModel} from "../models/Search.model";
 
 @Component({
   selector: 'app-content',
@@ -23,11 +24,11 @@ import {ProjectService} from "../services/project.service";
   styleUrls: ['./content.component.css']
 })
 export class ContentComponent implements OnInit,DoCheck, OnChanges,AfterViewChecked {
-  @Input() formGroup!:FormGroup;
+  @Input() searchData!:SearchModel;
   projectList : ProjectModel[] = [];
   filterProjectList : ProjectModel[] = [];
-  //@ViewChild("selectStatus") selectStatus!:HTMLSelectElement;
   selectedStatusId: number = 0;
+  statusList:ProjectModel[] = [];
 
 
   constructor(
@@ -39,15 +40,21 @@ export class ContentComponent implements OnInit,DoCheck, OnChanges,AfterViewChec
   }
 
   ngOnInit(): void {
+    this.projectList = this.getResponseData();
     this.filterProjectList  = this.projectList;
+    this.statusList = this.filterProjectList;
+
   }
 
 
-  ngDoCheck(): void {
-    // console.log("doCheck")
+  ngOnChanges(changes: SimpleChanges): void {
+    if (this.searchData) {
+      this.filterAll();
+    }
 
-    this.initResponseData();
-    this.filterByStatusId(this.selectedStatusId)
+  }
+
+  ngDoCheck(): void {
 
   }
 
@@ -59,8 +66,8 @@ export class ContentComponent implements OnInit,DoCheck, OnChanges,AfterViewChec
 
 
 
-  initResponseData() {
-    this.projectService.getProjects$().subscribe( pr => this.projectList = this.filterProjectList = pr);
+  getResponseData() {
+    return this.responseService.getAllResponseData();
   }
 
   getCountryById(id:number){
@@ -72,32 +79,97 @@ export class ContentComponent implements OnInit,DoCheck, OnChanges,AfterViewChec
   }
 
   getDataStatuses():number[]{
-    let statuses = this.projectList.map(data => data.workflowStateId);
+    // if(this.searchData){
+    //   this.filterAll();
+    // }
+
+    let statuses = this.statusList.map(data => data.workflowStateId);
     return statuses.filter((c, index) => {
       return statuses.indexOf(c) === index;
     });
   }
 
   filterByStatusId(statusId:number){
-    console.log(statusId)
-    if (statusId == 0){
+      if(statusId!=0){
+      this.filterProjectList = this.statusList.filter(project => project.workflowStateId == statusId);}
+      else{
+        this.filterProjectList = this.statusList
+      }
+      console.log(this.filterProjectList)
+
+  }
+
+  filterByCountryId(countryId: number) {
+
+    if (countryId == 0) {
       this.filterProjectList = this.projectList
+    } else {
+     this.filterProjectList = this.projectList.filter(project => project.InterventionCountryID == countryId);
     }
-    else {
-      console.log("filterByStatusId")
-      this.filterProjectList = this.projectList.filter(project => project.workflowStateId == statusId);
-    }
-    console.log(this.filterProjectList)
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
+  filterAll() {
+      this.filterByCountryId(this.searchData?.countryId);
+    this.keywordFilter();
+    this.statusList = this.filterProjectList;
+    this.filterByStatusId(this.selectedStatusId)
+  }
 
+  keywordFilter() {
+    let keyword = this.searchData?.keyword;
+    let keywordFilterProjectList: ProjectModel[] = [];
+    if (keyword != "" && !(
+      !this.searchData?.codeOfIntervention &&
+      !this.searchData?.titleOfIntervention &&
+      !this.searchData?.interventionShortName &&
+      !this.searchData?.interventionDescription
+    ) ) {
+      keyword = keyword?.toUpperCase();
+      keywordFilterProjectList.push(...this.filterByCodeOfTheIntervention(keyword));
+      keywordFilterProjectList.push(...this.filterByTitleOfTheIntervention(keyword));
+      keywordFilterProjectList.push(...this.filterByInterventionShortName(keyword));
+      keywordFilterProjectList.push(...this.filterByInterventionDescription(keyword));
+
+      this.filterProjectList = keywordFilterProjectList.filter((c, index) => {
+        return keywordFilterProjectList.indexOf(c) === index;
+      });
+    }
 
   }
+
+  filterByCodeOfTheIntervention(keyword: string) {
+    if (this.searchData?.codeOfIntervention) {
+      return  this.filterProjectList.filter(code => code.InterventionCode?.toUpperCase()?.includes(keyword))
+    }
+    return []
+  }
+
+  filterByTitleOfTheIntervention(keyword: string) {
+    if (this.searchData?.titleOfIntervention) {
+      return  this.filterProjectList.filter(code => code.Title?.toUpperCase()?.includes(keyword))
+    }
+    return []
+  }
+
+  filterByInterventionShortName(keyword: string) {
+    if (this.searchData?.interventionShortName) {
+      return  this.filterProjectList.filter(code => code.ShortName?.toUpperCase()?.includes(keyword))
+    }
+    return []
+  }
+
+  filterByInterventionDescription(keyword: string) {
+    if (this.searchData?.interventionDescription) {
+      return  this.filterProjectList.filter(code => code?.Description?.toUpperCase()?.includes(keyword))
+    }
+    return []
+  }
+
   onChange(event:any){
     this.selectedStatusId = +event.target.value;
-
+    this.filterByStatusId(this.selectedStatusId)
   }
+
 
 
 

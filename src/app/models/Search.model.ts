@@ -1,5 +1,5 @@
 export interface SearchModel {
-  country:String,
+  countryId:number,
   keyword:string,
   codeOfIntervention:boolean,
   titleOfIntervention:boolean,

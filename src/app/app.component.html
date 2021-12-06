@@ -1,8 +1,8 @@
 <div class="box">
   <div class="outer">
-    <app-search #searchComponent></app-search>
+    <app-search (dataSearch)="getSearchData($event)"></app-search>
   </div>
   <div class="inner">
-    <app-content [formGroup]="searchComponent.formGroup"></app-content>
+    <app-content [searchData]="searchData"></app-content>
   </div>
 </div>
