@@ -1,10 +1,10 @@
 <div class="content">
   <div class="filter-add">
     <div class="select">
-      <label for="status" >Status</label>
-      <select name="status" id="status"  (change)="onChange($event)" >
+      <label for="status">Status</label>
+      <select name="status" id="status" [ngModel]="selectedStatusId" (ngModelChange)="onStatusChange($event)">
         <option value="0">All statuses</option>
-        <option  [value]="status" *ngFor = "let status of getDataStatuses()">{{(status|statusPipe).name["3"]}}</option>
+        <option [value]="status" *ngFor="let status of getDataStatuses()">{{(status|statusPipe).name["3"]}}</option>
       </select>
     </div>
 
@@ -14,23 +14,23 @@
   <table>
     <thead>
     <tr>
-      <th>Code of the intervention</th>
-      <th>Short Name</th>
-      <th>Official Intervention Name</th>
-      <th>Country</th>
-      <th>Status</th>
-      <th>Last Updated By</th>
-      <th>Last Updated On</th>
+      <th (click)="sortData('InterventionCode')">Code of the intervention</th>
+      <th (click)="sortData('ShortName')">Short Name</th>
+      <th (click)="sortData('Title')">Official Intervention Name</th>
+      <th (click)="sortData('InterventionCountryID')">Country</th>
+      <th (click)="sortData('workflowStateId')">Status</th>
+      <th (click)="sortData('UpdatedUserID')">Last Updated By</th>
+      <th (click)="sortData('DateUpdated')">Last Updated On</th>
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor = "let data of filterProjectList">
+    <tr *ngFor="let data of filterProjectList">
       <td>{{data.InterventionCode}}</td>
       <td>{{data.ShortName}}</td>
       <td>{{data.Title}}</td>
       <td>{{getCountryById(data.InterventionCountryID)}}</td>
       <td>{{getStatusById(data.workflowStateId)}}</td>
-      <td>{{data.UpdatedUserID| user}}</td>
+      <td>{{data.UpdatedUserID| userPipe}}</td>
       <td>{{data.DateUpdated | date:'d/M/yy'}}</td>
     </tr>
     </tbody>

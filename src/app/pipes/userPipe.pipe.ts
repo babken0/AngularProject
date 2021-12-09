@@ -1,11 +1,11 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import {UserService} from "../services/user.service";
-import {ProjectModel} from "../models/Project.model";
 
+// TODO: Rename to username
 @Pipe({
-  name: 'user'
+  name: 'userPipe'
 })
-export class UserPipe implements PipeTransform {
+export class UserPipePipe implements PipeTransform {
   constructor(private userService:UserService) {
   }
 

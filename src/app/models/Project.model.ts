@@ -1,4 +1,3 @@
-
 export interface ProjectModel {
   InterventionCode: string,
   ShortName: string,
@@ -8,4 +7,5 @@ export interface ProjectModel {
   UpdatedUserID: number,
   Description: string,
   DateUpdated: number,
+  ActualStartDate: string;
 }

@@ -1,21 +1,16 @@
 import {
-  AfterViewChecked,
   Component,
-  DoCheck,
   Input,
   OnChanges,
   OnInit,
   SimpleChanges,
-  ViewChild
+
 } from '@angular/core';
-import {ResponseService} from "../services/response.service";
+import {ProjectService} from "../services/project.service";
 import {ProjectModel} from "../models/Project.model";
 import {CountryService} from "../services/country.service";
-import {CountryModel} from "../models/Country.model";
 import {StatusService} from "../services/status.service";
 import {UserService} from "../services/user.service";
-import {FormGroup} from "@angular/forms";
-import {ProjectService} from "../services/project.service";
 import {SearchModel} from "../models/Search.model";
 
 @Component({
@@ -23,154 +18,194 @@ import {SearchModel} from "../models/Search.model";
   templateUrl: './content.component.html',
   styleUrls: ['./content.component.css']
 })
-export class ContentComponent implements OnInit,DoCheck, OnChanges,AfterViewChecked {
-  @Input() searchData!:SearchModel;
-  projectList : ProjectModel[] = [];
-  filterProjectList : ProjectModel[] = [];
+export class ContentComponent implements OnInit, OnChanges {
+  @Input() search!: SearchModel;
+  projectList: ProjectModel[] = [];
+  filterProjectList: ProjectModel[] = [];
   selectedStatusId: number = 0;
-  statusList:ProjectModel[] = [];
+  statusList: ProjectModel[] = [];
+  count: number = 0;
+  previousSort: string = "";
 
 
-  constructor(
-    private responseService :ResponseService,
-    private countryService :CountryService,
-    private statusService: StatusService,
-    private projectService:ProjectService,
-  ) {
+  constructor(private responseService: ProjectService,
+              private countryService: CountryService,
+              private statusService: StatusService,
+              private userService: UserService) {
   }
 
   ngOnInit(): void {
-    this.projectList = this.getResponseData();
-    this.filterProjectList  = this.projectList;
+    this.projectList = this.responseService.getAllProjectData();
+    this.filterProjectList = this.projectList;
     this.statusList = this.filterProjectList;
-
   }
-
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (this.searchData) {
-      this.filterAll();
-    }
-
+    this.filterAll();
   }
 
-  ngDoCheck(): void {
-
-  }
-
-
-  ngAfterViewChecked(): void {
-    //console.log(this.selectStatus.value);
-  }
-
-
-
-
-  getResponseData() {
-    return this.responseService.getAllResponseData();
-  }
-
-  getCountryById(id:number){
+  getCountryById(id: number) {
     return this.countryService.getCountryById(id)?.name[3];
   }
 
-  getStatusById(id:number){
+  getStatusById(id: number) {
     return this.statusService.getStatusById(id)?.name[3]
   }
 
-  getDataStatuses():number[]{
-    // if(this.searchData){
-    //   this.filterAll();
-    // }
-
+  getDataStatuses(): number[] {
     let statuses = this.statusList.map(data => data.workflowStateId);
     return statuses.filter((c, index) => {
       return statuses.indexOf(c) === index;
     });
   }
 
-  filterByStatusId(statusId:number){
-      if(statusId!=0){
-      this.filterProjectList = this.statusList.filter(project => project.workflowStateId == statusId);}
-      else{
-        this.filterProjectList = this.statusList
-      }
-      console.log(this.filterProjectList)
-
+  filterAll(): void {
+    if (this.search) {
+      this.filterByCountryId(this.search?.countryId);
+      this.keywordFilter();
+      this.statusList = this.filterProjectList;
+      this.filterByStatusId(this.selectedStatusId)
+      this.filterByStartDate()
+    } else {
+      this.filterProjectList = this.projectList;
+      this.statusList = this.projectList;
+      this.filterByStatusId(this.selectedStatusId)
+    }
   }
 
-  filterByCountryId(countryId: number) {
+  filterByStatusId(statusId: number): void {
+    if (statusId != 0) {
+      this.filterProjectList = this.statusList.filter(project => project.workflowStateId == statusId);
+    } else {
+      this.filterProjectList = this.statusList
+    }
+  }
 
+  filterByCountryId(countryId: number): void {
     if (countryId == 0) {
       this.filterProjectList = this.projectList
     } else {
-     this.filterProjectList = this.projectList.filter(project => project.InterventionCountryID == countryId);
+      this.filterProjectList = this.projectList.filter(project => project.InterventionCountryID == countryId);
     }
   }
 
-  filterAll() {
-      this.filterByCountryId(this.searchData?.countryId);
-    this.keywordFilter();
-    this.statusList = this.filterProjectList;
-    this.filterByStatusId(this.selectedStatusId)
-  }
-
-  keywordFilter() {
-    let keyword = this.searchData?.keyword;
-    let keywordFilterProjectList: ProjectModel[] = [];
+  keywordFilter(): void {
+    let keyword = this.search?.keyword;
+    let isCodeOfIntervention = this.search?.codeOfIntervention;
+    let isTitleOfIntervention = this.search?.titleOfIntervention;
+    let isInterventionShortName = this.search?.interventionShortName;
+    let isInterventionDescription = this.search?.interventionDescription;
     if (keyword != "" && !(
-      !this.searchData?.codeOfIntervention &&
-      !this.searchData?.titleOfIntervention &&
-      !this.searchData?.interventionShortName &&
-      !this.searchData?.interventionDescription
-    ) ) {
+      !isCodeOfIntervention &&
+      !isTitleOfIntervention &&
+      !isInterventionShortName &&
+      !isInterventionDescription
+    )) {
+      // TODO: poxel ushi mas@
       keyword = keyword?.toUpperCase();
-      keywordFilterProjectList.push(...this.filterByCodeOfTheIntervention(keyword));
-      keywordFilterProjectList.push(...this.filterByTitleOfTheIntervention(keyword));
-      keywordFilterProjectList.push(...this.filterByInterventionShortName(keyword));
-      keywordFilterProjectList.push(...this.filterByInterventionDescription(keyword));
-
-      this.filterProjectList = keywordFilterProjectList.filter((c, index) => {
-        return keywordFilterProjectList.indexOf(c) === index;
-      });
+      this.filterProjectList = this.filterByKeyword(keyword, isCodeOfIntervention, isTitleOfIntervention, isInterventionShortName, isInterventionDescription)
     }
-
   }
 
-  filterByCodeOfTheIntervention(keyword: string) {
-    if (this.searchData?.codeOfIntervention) {
-      return  this.filterProjectList.filter(code => code.InterventionCode?.toUpperCase()?.includes(keyword))
-    }
-    return []
+
+  private filterByKeyword(keyword: string, isCode: boolean, isTitle: boolean, isShortName: boolean, isDescription: boolean): ProjectModel[] {
+    return (this.filterProjectList.filter(code => {
+      return ContentComponent.filterByInterventionCode(keyword,isCode,code) ||
+        ContentComponent.filterByTitle(keyword,isTitle,code) ||
+        ContentComponent.filterByShortName(keyword,isShortName,code) ||
+        ContentComponent.filterByDescription(keyword,isDescription,code)
+    }));
   }
 
-  filterByTitleOfTheIntervention(keyword: string) {
-    if (this.searchData?.titleOfIntervention) {
-      return  this.filterProjectList.filter(code => code.Title?.toUpperCase()?.includes(keyword))
-    }
-    return []
+  private static filterByInterventionCode(keyword:string, isChecked:boolean, project:ProjectModel){
+    return  isChecked ? project?.InterventionCode?.toUpperCase()?.includes(keyword) : false;
+  }
+   private static filterByTitle(keyword:string, isChecked:boolean, project:ProjectModel){
+    return  isChecked ? project?.Title?.toUpperCase()?.includes(keyword) : false;
   }
 
-  filterByInterventionShortName(keyword: string) {
-    if (this.searchData?.interventionShortName) {
-      return  this.filterProjectList.filter(code => code.ShortName?.toUpperCase()?.includes(keyword))
-    }
-    return []
+  private static filterByShortName(keyword:string, isChecked:boolean, project:ProjectModel){
+    return  isChecked ? project?.ShortName?.toUpperCase()?.includes(keyword) : false;
   }
 
-  filterByInterventionDescription(keyword: string) {
-    if (this.searchData?.interventionDescription) {
-      return  this.filterProjectList.filter(code => code?.Description?.toUpperCase()?.includes(keyword))
-    }
-    return []
+  private static filterByDescription(keyword:string, isChecked:boolean, project:ProjectModel){
+    return  isChecked ? project?.Description?.toUpperCase()?.includes(keyword) : false;
   }
 
-  onChange(event:any){
-    this.selectedStatusId = +event.target.value;
+
+
+  filterByStartDate(): void {
+    let fromInt = new Date(this.search?.startDateFrom | 0).getTime()
+    let toInt = Infinity
+    if (this.search?.startDateTo) {
+      toInt = new Date(this.search?.startDateTo).getTime();
+    }
+    this.filterProjectList = this.filterProjectList.filter(data => {
+        let startDate = new Date(data.ActualStartDate).getTime();
+        return (startDate > fromInt && startDate < toInt)
+      }
+    )
+  }
+
+  sortData(sortBy: string): void {
+    if (this.previousSort == sortBy) {
+      this.count *= -1
+    } else {
+      this.previousSort = sortBy
+      this.count = 1
+    }
+    let sortType = this.count
+    switch (sortBy) {
+      case "InterventionCode":
+        this.filterProjectList = this.filterProjectList
+          .sort((a, b) => {
+            return (a.InterventionCode?.localeCompare(b.InterventionCode)) * sortType;
+          });
+        break;
+      case "ShortName":
+        this.filterProjectList = this.filterProjectList
+          .sort((a, b) => {
+            return (a.ShortName?.localeCompare(b.ShortName)) * sortType;
+          });
+        break;
+      case "Title":
+        this.filterProjectList = this.filterProjectList
+          .sort((a, b) => {
+            return (a.Title?.localeCompare(b.Title)) * sortType;
+          });
+        break;
+      case "InterventionCountryID":
+        this.filterProjectList = this.filterProjectList
+          .sort((a, b) => {
+            return (this.countryService.getCountryById(a.InterventionCountryID)?.name["3"]?.localeCompare(this.countryService.getCountryById(b.InterventionCountryID)?.name["3"]) * sortType);
+          });
+        break;
+      case "workflowStateId":
+        console.log("sort by Status")
+        this.filterProjectList = this.filterProjectList
+          .sort((a, b) => {
+            return this.statusService.getStatusById(a.workflowStateId).name["3"].localeCompare((this.statusService.getStatusById(b.workflowStateId).name["3"])) * sortType;
+          });
+        break;
+      case "UpdatedUserID":
+        this.filterProjectList = this.filterProjectList
+          .sort((a, b) => {
+            return (this.userService.getUserById(a.UpdatedUserID)?.name["3"]?.localeCompare(this.userService.getUserById(b.UpdatedUserID)?.name["3"])) * sortType;
+          });
+        break;
+      case "DateUpdated":
+        this.filterProjectList = this.filterProjectList
+          .sort((a, b) => {
+            return (a.DateUpdated - b.DateUpdated) * sortType;
+          });
+        break;
+    }
+  }
+
+  onStatusChange(id: string): void {
+    this.selectedStatusId = +id;
     this.filterByStatusId(this.selectedStatusId)
   }
-
-
 
 
 }

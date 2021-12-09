@@ -5,8 +5,8 @@ import { AppComponent } from './app.component';
 import { SearchComponent } from './search/search.component';
 import {ContentComponent} from "./content/content.component";
 import {CommonModule} from "@angular/common";
-import { UserPipe } from './pipes/user.pipe';
-import {ReactiveFormsModule} from "@angular/forms";
+import { UserPipePipe } from './pipes/userPipe.pipe';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {StatusPipe } from './pipes/statusPipe.pipe';
 
 
@@ -15,12 +15,13 @@ import {StatusPipe } from './pipes/statusPipe.pipe';
     AppComponent,
     SearchComponent,
     ContentComponent,
-    UserPipe,
+    UserPipePipe,
     StatusPipe
   ],
   imports: [
     BrowserModule,
     CommonModule,
+    FormsModule,
     ReactiveFormsModule
   ],
   providers: [],

@@ -1,8 +1,8 @@
 <div class="box">
   <div class="outer">
-    <app-search (dataSearch)="getSearchData($event)"></app-search>
+    <app-search (search)="getSearchData($event)"></app-search>
   </div>
   <div class="inner">
-    <app-content [searchData]="searchData"></app-content>
+    <app-content [search]="searchData"></app-content>
   </div>
 </div>

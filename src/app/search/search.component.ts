@@ -1,10 +1,7 @@
-import {Component, DoCheck, EventEmitter, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {CountryService} from "../services/country.service";
 import {CountryModel} from "../models/Country.model";
-import {ResponseService} from "../services/response.service";
-import {ProjectModel} from "../models/Project.model";
 import {FormControl, FormGroup} from "@angular/forms";
-import {ProjectService} from "../services/project.service";
 import {SearchModel} from "../models/Search.model";
 
 @Component({
@@ -12,48 +9,21 @@ import {SearchModel} from "../models/Search.model";
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css']
 })
-export class SearchComponent implements OnInit, OnChanges, DoCheck {
-  countriesList: CountryModel[] = [];
-  projectList: ProjectModel[] = []
-  filterProjectList: ProjectModel[] = []
-  @Output() dataSearch:EventEmitter<SearchModel>
-
+export class SearchComponent implements OnInit {
+  @Output() search = new EventEmitter<SearchModel>()
+  public countriesList: CountryModel[] = [];
   public formGroup: FormGroup;
 
-  constructor(
-    private countryService: CountryService,
-    private responseService: ResponseService,
-    private projectService: ProjectService,
-  ) {
-    this.dataSearch = new EventEmitter<SearchModel>();
+  constructor(private countryService: CountryService) {
     this.countriesList = this.getCountries();
     this.formGroup = this.createFormGroup()
-
-    //console.log(this.formGroup.controls["keyword"])
-  }
-
-
-  getCountriesName() {
-    return this.countryService.getCountriesData().map(data => data.name[3])
-  }
-
-  getCountries() {
-    return this.countryService.getCountriesData();
   }
 
   ngOnInit(): void {
-    this.projectList = this.getResponseData()
-    this.filterProjectList = this.projectList;
-    this.projectService.load(this.filterProjectList);
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-
-    //this.formGroup.controls["search"].setValue("Search")
-  }
-
-  ngDoCheck(): void {
-
+  private getCountries() {
+    return this.countryService.getCountriesData();
   }
 
   private createFormGroup() {
@@ -69,21 +39,17 @@ export class SearchComponent implements OnInit, OnChanges, DoCheck {
         startDateTo: new FormControl(""),
       }
     );
-
-  }
-
-  getResponseData() {
-    return this.responseService.getAllResponseData();
   }
 
   onSearch() {
-
-    this.dataSearch.emit(this.createSearchModel());
+    this.search.emit(this.createSearchModel());
   }
 
-  createSearchModel():SearchModel {
-    //console.log(this.formGroup.controls["country"].value);
-    return  {
+  onReset() {
+    this.search.emit(undefined);
+  }
+  createSearchModel(): SearchModel {
+    return {
       countryId: +this.formGroup.controls["country"].value,
       keyword: this.formGroup.controls["keyword"].value,
       codeOfIntervention: this.formGroup.controls["codeOfIntervention"].value,
@@ -93,10 +59,7 @@ export class SearchComponent implements OnInit, OnChanges, DoCheck {
       startDateFrom: this.formGroup.controls["startDateFrom"].value,
       startDateTo: this.formGroup.controls["startDateTo"].value,
     }
-
   }
-
-
 
 
 }

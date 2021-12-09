@@ -18,7 +18,7 @@ export class CountryService {
     return this.getCountries().data;
   }
 
-  getCountryById(countryID:number){
-    return this.getCountries().data.find(country=> country.CountryId==countryID)
+  getCountryById(countryID: number): CountryModel {
+    return <CountryModel>this.getCountries().data.find(country => country.CountryId == countryID)
   }
 }

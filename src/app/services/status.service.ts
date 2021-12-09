@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import * as states from "../../assets/WorkflowStates.json";
+import {Status} from "../models/status.model";
 
 @Injectable({
   providedIn: 'root'
@@ -13,11 +14,7 @@ export class StatusService {
     return states
   }
 
-  getAllStatesData() {
-    return this.getStates().data;
-  }
-
-  getStatusById(statusID: number) {
-    return this.getStates().data.find(state => state.WFSTATEID == statusID)
+  getStatusById(statusID: number): Status {
+    return <Status>this.getStates().data.find(state => state.WFSTATEID == statusID)
   }
 }
