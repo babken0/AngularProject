@@ -35,9 +35,16 @@ export class ContentComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
-    this.projects = this.responseService.getAllProjectData();
-    this.filteredProjects = this.projects;
-    this.projectsFilteredBySearch = this.filteredProjects;
+    this.getAllProject()
+  }
+
+  private getAllProject() {
+    return this.responseService.getProjectObservable()
+      .subscribe(data => {
+        this.projects = data;
+        this.filteredProjects = this.projects;
+        this.projectsFilteredBySearch = this.filteredProjects;
+      });
   }
 
   ngOnChanges(changes: SimpleChanges): void {

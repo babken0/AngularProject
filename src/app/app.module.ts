@@ -9,6 +9,8 @@ import { UserNamePipe } from './pipes/user-name.pipe';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {StatusNamePipe } from './pipes/status-name.pipe';
 import { BgColorDirective } from './directives/bg-color.directive';
+import {HttpClientModule} from "@angular/common/http";
+import { CountryNamePipe } from './pipes/country-name.pipe';
 
 
 @NgModule({
@@ -18,13 +20,15 @@ import { BgColorDirective } from './directives/bg-color.directive';
     ContentComponent,
     UserNamePipe,
     StatusNamePipe,
-    BgColorDirective
+    BgColorDirective,
+    CountryNamePipe
   ],
   imports: [
     BrowserModule,
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

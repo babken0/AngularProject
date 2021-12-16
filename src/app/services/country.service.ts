@@ -1,24 +1,25 @@
 import {Injectable} from '@angular/core';
-import * as countries from "../../assets/Countries.json";
-import {OuntryModel} from "../models/ountry.model";
+import {CountryModel} from "../models/country.model";
+import {Observable} from "rxjs";
+import {HttpClient} from "@angular/common/http";
+import {map} from "rxjs/operators";
+import {ProjectModel} from "../models/project.model";
 
 @Injectable({
   providedIn: 'root'
 })
 export class CountryService {
 
-  constructor() {
+  constructor(private http:HttpClient) {
   }
 
-  private getCountries() {
-    return countries;
+
+  getCountriesObservable(): Observable<CountryModel[]> {
+    return this.http.get("../../assets/Countries.json")
+      .pipe(map(data => data["data"] as CountryModel[] ))
   }
 
-  getCountriesData(): OuntryModel[] {
-    return this.getCountries().data;
-  }
-
-  getCountryById(countryID: number): OuntryModel {
-    return <OuntryModel>this.getCountries().data.find(country => country.CountryId == countryID)
+  getCountryById(countryID: number): CountryModel {
+    return <CountryModel>this.getCountries().data.find(country => country.CountryId == countryID)
   }
 }

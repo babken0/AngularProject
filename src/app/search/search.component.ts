@@ -1,6 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {CountryService} from "../services/country.service";
-import {OuntryModel} from "../models/ountry.model";
+import {CountryModel} from "../models/country.model";
 import {FormControl, FormGroup} from "@angular/forms";
 import {SearchModel} from "../models/search.model";
 
@@ -11,7 +11,7 @@ import {SearchModel} from "../models/search.model";
 })
 export class SearchComponent implements OnInit {
   @Output() search = new EventEmitter<SearchModel>()
-  public countriesList: OuntryModel[] = [];
+  public countriesList: CountryModel[] = [];
   public formGroup: FormGroup;
 
   constructor(private countryService: CountryService) {
@@ -23,7 +23,7 @@ export class SearchComponent implements OnInit {
   }
 
   private getCountries() {
-    return this.countryService.getCountriesData();
+    return this.countryService.getCountriesObservable();
   }
 
   private createFormGroup() {
