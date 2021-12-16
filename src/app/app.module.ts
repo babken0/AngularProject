@@ -5,9 +5,10 @@ import { AppComponent } from './app.component';
 import { SearchComponent } from './search/search.component';
 import {ContentComponent} from "./content/content.component";
 import {CommonModule} from "@angular/common";
-import { UserPipePipe } from './pipes/userPipe.pipe';
+import { UserNamePipe } from './pipes/user-name.pipe';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {StatusPipe } from './pipes/statusPipe.pipe';
+import {StatusNamePipe } from './pipes/status-name.pipe';
+import { BgColorDirective } from './directives/bg-color.directive';
 
 
 @NgModule({
@@ -15,8 +16,9 @@ import {StatusPipe } from './pipes/statusPipe.pipe';
     AppComponent,
     SearchComponent,
     ContentComponent,
-    UserPipePipe,
-    StatusPipe
+    UserNamePipe,
+    StatusNamePipe,
+    BgColorDirective
   ],
   imports: [
     BrowserModule,

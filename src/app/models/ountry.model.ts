@@ -3,7 +3,7 @@ type name = {
   "4": string
 }
 
-export interface CountryModel {
+export interface OuntryModel {
   CountryId: number,
   name: name
 }

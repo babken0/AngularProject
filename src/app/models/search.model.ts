@@ -7,5 +7,4 @@ export interface SearchModel {
   interventionDescription:boolean,
   startDateFrom:number,
   startDateTo:number,
-
 }

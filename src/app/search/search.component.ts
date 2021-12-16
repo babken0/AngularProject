@@ -1,8 +1,8 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {CountryService} from "../services/country.service";
-import {CountryModel} from "../models/Country.model";
+import {OuntryModel} from "../models/ountry.model";
 import {FormControl, FormGroup} from "@angular/forms";
-import {SearchModel} from "../models/Search.model";
+import {SearchModel} from "../models/search.model";
 
 @Component({
   selector: 'app-search',
@@ -11,7 +11,7 @@ import {SearchModel} from "../models/Search.model";
 })
 export class SearchComponent implements OnInit {
   @Output() search = new EventEmitter<SearchModel>()
-  public countriesList: CountryModel[] = [];
+  public countriesList: OuntryModel[] = [];
   public formGroup: FormGroup;
 
   constructor(private countryService: CountryService) {
@@ -48,6 +48,7 @@ export class SearchComponent implements OnInit {
   onReset() {
     this.search.emit(undefined);
   }
+
   createSearchModel(): SearchModel {
     return {
       countryId: +this.formGroup.controls["country"].value,

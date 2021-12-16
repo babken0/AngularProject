@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {FormGroup} from "@angular/forms";
-import {SearchModel} from "./models/Search.model";
+import {SearchModel} from "./models/search.model";
 
 @Component({
   selector: 'app-root',

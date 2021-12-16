@@ -4,10 +4,9 @@
       <label for="status">Status</label>
       <select name="status" id="status" [ngModel]="selectedStatusId" (ngModelChange)="onStatusChange($event)">
         <option value="0">All statuses</option>
-        <option [value]="status" *ngFor="let status of getDataStatuses()">{{(status|statusPipe).name["3"]}}</option>
+        <option [value]="statusId" *ngFor="let statusId of getStatusIdes()">{{(statusId|statusName).name["3"]}}</option>
       </select>
     </div>
-
 
     <button>Create New Intervention</button>
   </div>
@@ -24,14 +23,14 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let data of filterProjectList">
-      <td>{{data.InterventionCode}}</td>
+    <tr *ngFor="let data of filteredProjects" appBgColor>
+      <td >{{data.InterventionCode}}</td>
       <td>{{data.ShortName}}</td>
       <td>{{data.Title}}</td>
-      <td>{{getCountryById(data.InterventionCountryID)}}</td>
-      <td>{{getStatusById(data.workflowStateId)}}</td>
-      <td>{{data.UpdatedUserID| userPipe}}</td>
-      <td>{{data.DateUpdated | date:'d/M/yy'}}</td>
+      <td>{{getCountryName(data.InterventionCountryID)}}</td>
+      <td>{{getStatusName(data.workflowStateId)}}</td>
+      <td>{{data.UpdatedUserID| userName}}</td>
+      <td>{{data.DateUpdated | date : 'd/M/yy'}}</td>
     </tr>
     </tbody>
   </table>
