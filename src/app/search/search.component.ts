@@ -15,15 +15,17 @@ export class SearchComponent implements OnInit {
   public formGroup: FormGroup;
 
   constructor(private countryService: CountryService) {
-    this.countriesList = this.getCountries();
+
     this.formGroup = this.createFormGroup()
   }
 
   ngOnInit(): void {
+    this.getCountries();
   }
 
   private getCountries() {
-    return this.countryService.getCountriesObservable();
+    return this.countryService.getCountriesObservable()
+      .subscribe(countries => this.countriesList = countries);
   }
 
   private createFormGroup() {

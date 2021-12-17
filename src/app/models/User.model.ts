@@ -5,6 +5,4 @@ type name = {
 export interface User {
   UserID:number,
   name:name,
-  StatusID:number
-
 }

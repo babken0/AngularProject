@@ -4,7 +4,7 @@
       <label for="status">Status</label>
       <select name="status" id="status" [ngModel]="selectedStatusId" (ngModelChange)="onStatusChange($event)">
         <option value="0">All statuses</option>
-        <option [value]="statusId" *ngFor="let statusId of getStatusIdes()">{{(statusId|statusName).name["3"]}}</option>
+        <option [value]="statusId" *ngFor="let statusId of getStatusIdes()">{{statusId|statusName|async}}</option>
       </select>
     </div>
 
@@ -27,9 +27,9 @@
       <td >{{data.InterventionCode}}</td>
       <td>{{data.ShortName}}</td>
       <td>{{data.Title}}</td>
-      <td>{{getCountryName(data.InterventionCountryID)}}</td>
-      <td>{{getStatusName(data.workflowStateId)}}</td>
-      <td>{{data.UpdatedUserID| userName}}</td>
+      <td>{{data.InterventionCountryID|countryName|async}}</td>
+      <td>{{data.workflowStateId|statusName|async}}</td>
+      <td>{{data.UpdatedUserID| userName|async}}</td>
       <td>{{data.DateUpdated | date : 'd/M/yy'}}</td>
     </tr>
     </tbody>

@@ -12,6 +12,9 @@ import {CountryService} from "../services/country.service";
 import {StatusService} from "../services/status.service";
 import {UserService} from "../services/user.service";
 import {SearchModel} from "../models/search.model";
+import {CountryModel} from "../models/country.model";
+import {User} from "../models/User.model";
+import {Status} from "../models/status.model";
 
 @Component({
   selector: 'app-content',
@@ -21,6 +24,9 @@ import {SearchModel} from "../models/search.model";
 export class ContentComponent implements OnInit, OnChanges {
   @Input() searchData!: SearchModel;
   projects: ProjectModel[] = [];
+  projectCountries :CountryModel[] = []
+  projectUsers :User[] = []
+  projectStatuses : Status[] = []
   filteredProjects: ProjectModel[] = [];
   selectedStatusId: number = 0;
   projectsFilteredBySearch: ProjectModel[] = [];
@@ -28,35 +34,29 @@ export class ContentComponent implements OnInit, OnChanges {
   previousSort: string = "";
   color: string= 'white';
 
-  constructor(private responseService: ProjectService,
+  constructor(private projectService: ProjectService,
               private countryService: CountryService,
               private statusService: StatusService,
               private userService: UserService) {
   }
 
   ngOnInit(): void {
-    this.getAllProject()
+    this.getAllProject();
+    this.getProjectsCountry();
+    this.getProjectsUser();
+    this.getProjectsStatus();
   }
 
-  private getAllProject() {
-    return this.responseService.getProjectObservable()
-      .subscribe(data => {
-        this.projects = data;
-        this.filteredProjects = this.projects;
-        this.projectsFilteredBySearch = this.filteredProjects;
-      });
-  }
+
 
   ngOnChanges(changes: SimpleChanges): void {
     this.filterAll();
   }
 
-  getCountryName(id: number) {
-    return this.countryService.getCountryById(id)?.name[3];
-  }
+
 
   getStatusName(id: number) {
-    return this.statusService.getStatusById(id)?.name[3]
+    return this.getStatusById(id)?.name[3]
   }
 
   getStatusIdes(): number[] {
@@ -163,20 +163,21 @@ export class ContentComponent implements OnInit, OnChanges {
       case "InterventionCountryID":
         this.filteredProjects = this.filteredProjects
           .sort((a, b) => {
-            return (this.countryService.getCountryById(a.InterventionCountryID)?.name["3"]?.localeCompare(this.countryService.getCountryById(b.InterventionCountryID)?.name["3"]) * sortType);
+
+            return ((this.getCountryById(a.InterventionCountryID)?.name["3"] ).localeCompare(this.getCountryById(b.InterventionCountryID)?.name["3"]) * sortType);
           });
         break;
       case "workflowStateId":
         console.log("sort by Status")
         this.filteredProjects = this.filteredProjects
           .sort((a, b) => {
-            return this.statusService.getStatusById(a.workflowStateId).name["3"].localeCompare((this.statusService.getStatusById(b.workflowStateId).name["3"])) * sortType;
+            return this.getStatusById(a.workflowStateId).name["3"].localeCompare((this.getStatusById(b.workflowStateId).name["3"])) * sortType;
           });
         break;
       case "UpdatedUserID":
         this.filteredProjects = this.filteredProjects
           .sort((a, b) => {
-            return (this.userService.getUserById(a.UpdatedUserID)?.name["3"]?.localeCompare(this.userService.getUserById(b.UpdatedUserID)?.name["3"])) * sortType;
+            return (this.getUserById(a.UpdatedUserID)?.name["3"]?.localeCompare(this.getUserById(b.UpdatedUserID)?.name["3"])) * sortType;
           });
         break;
       case "DateUpdated":
@@ -186,6 +187,40 @@ export class ContentComponent implements OnInit, OnChanges {
           });
         break;
     }
+  }
+
+  private getAllProject() {
+    return this.projectService.getProjectObservable()
+      .subscribe(data => {
+        this.projects = data;
+        this.filteredProjects = this.projects;
+        this.projectsFilteredBySearch = this.filteredProjects;
+      });
+  }
+
+  private getProjectsCountry (){
+    return this.countryService.getProjectsCountry(this.projectService.getProjectObservable())
+      .subscribe(countries => this.projectCountries = <CountryModel[]>countries)
+  }
+
+  private getProjectsUser (){
+    return this.userService.getProjectsUsers(this.projectService.getProjectObservable())
+      .subscribe(users => this.projectUsers= <User[]>users)
+  }
+  private getProjectsStatus(){
+    return this.statusService.getProjectsStatus(this.projectService.getProjectObservable())
+      .subscribe(statuses => this.projectStatuses = <Status[]>statuses)
+  }
+  private getStatusById(id:number){
+    return <Status>this.projectStatuses.find(status => status?.WFSTATEID == id)
+  }
+
+  private getUserById(id:number){
+    return <User>this.projectUsers.find(user => user?.UserID == id)
+  }
+
+  private getCountryById(id:number):CountryModel{
+    return <CountryModel>this.projectCountries.find(country => country?.CountryId == id)
   }
 
   onStatusChange(id: string): void {
