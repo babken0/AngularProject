@@ -5,19 +5,27 @@ import {HttpClient} from "@angular/common/http";
 import {map} from "rxjs/operators";
 import {ProjectModel} from "../models/project.model";
 import {forkJoin} from "rxjs";
+import {of} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class CountryService {
+  countries!: CountryModel[];
 
   constructor(private http: HttpClient) {
   }
 
-
   getCountriesObservable(): Observable<CountryModel[]> {
-    return this.http.get("../../assets/Countries.json")
-      .pipe(map(data => data["data"] as CountryModel[]))
+    if (this.countries) {
+      return of(this.countries)
+    } else {
+      return this.http.get("../../assets/Countries.json")
+        .pipe(map(data => {
+          this.countries = data["data"] as CountryModel[];
+          return  data["data"] as CountryModel[];
+        }))
+    }
   }
 
   getCountryById(countryID: number): Observable<CountryModel> {
