@@ -1,0 +1,107 @@
+Index: src/app/pipes/country-name.pipe.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/app/pipes/country-name.pipe.ts	(date 1639748847750)
++++ src/app/pipes/country-name.pipe.ts	(date 1639748847750)
+@@ -0,0 +1,20 @@
++import { Pipe, PipeTransform } from '@angular/core';
++import {CountryService} from "../services/country.service";
++import {map} from "rxjs/operators";
++import {Observable} from "rxjs";
++
++@Pipe({
++  name: 'countryName'
++})
++export class CountryNamePipe implements PipeTransform {
++  constructor(private countryService:CountryService) {
++  }
++
++  transform(id: number): Observable<string> {
++    return this.countryService.getCountryById(id)
++      .pipe(map(country=> country.name["3"]))
++
++  }
++
++
++}
+Index: src/app/services/country.service.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/app/services/country.service.ts	(revision d3717ee37b6c15b0071fd6ed68b3e16053a1f7e3)
++++ src/app/services/country.service.ts	(date 1639754372877)
+@@ -5,19 +5,27 @@
+ import {map} from "rxjs/operators";
+ import {ProjectModel} from "../models/project.model";
+ import {forkJoin} from "rxjs";
++import {of} from "rxjs";
+ 
+ @Injectable({
+   providedIn: 'root'
+ })
+ export class CountryService {
++  countries!: CountryModel[];
+ 
+   constructor(private http: HttpClient) {
+   }
+ 
+-
+   getCountriesObservable(): Observable<CountryModel[]> {
+-    return this.http.get("../../assets/Countries.json")
+-      .pipe(map(data => data["data"] as CountryModel[]))
++    if (this.countries) {
++      return of(this.countries)
++    } else {
++      return this.http.get("../../assets/Countries.json")
++        .pipe(map(data => {
++          this.countries = data["data"] as CountryModel[];
++          return  data["data"] as CountryModel[];
++        }))
++    }
+   }
+ 
+   getCountryById(countryID: number): Observable<CountryModel> {
+Index: src/app/services/project.service.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/app/services/project.service.ts	(revision d3717ee37b6c15b0071fd6ed68b3e16053a1f7e3)
++++ src/app/services/project.service.ts	(date 1639754883121)
+@@ -1,21 +1,26 @@
+-import { Injectable } from '@angular/core';
+-import  * as response from "../../assets/response.json";
++import {Injectable} from '@angular/core';
++import * as response from "../../assets/response.json";
+ import {ProjectModel} from "../models/project.model";
+ import {HttpClient} from "@angular/common/http";
+ import {Observable} from "rxjs";
+-import {map} from "rxjs/operators";
++import {map, zip} from "rxjs";
+ 
+ @Injectable({
+   providedIn: 'root'
+ })
+ export class ProjectService {
+ 
+-  constructor(private http:HttpClient) { }
++  constructor(private http: HttpClient) {
++  }
++
+ 
+-   getProjectObservable():Observable<ProjectModel[]>{
++  getProjectObservable(): Observable<ProjectModel[]> {
++    // zip(countries$, users$, statuses$, projects$).subscribe([countries, users, statuses, projects] => {
++    //
++    // })
++
+     return this.http.get("../../assets/response.json")
+-      .pipe(map(data => data["data"] as ProjectModel[] ))
+-
++      .pipe(map(data => data["data"] as ProjectModel[]))
+   }
+ 
+ 
