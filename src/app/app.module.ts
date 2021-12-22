@@ -2,15 +2,17 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { SearchComponent } from './search/search.component';
-import {ContentComponent} from "./content/content.component";
+import { SearchComponent } from './components/search/search.component';
+import {ContentComponent} from "./components/content/content.component";
 import {CommonModule} from "@angular/common";
-import { UserNamePipe } from './pipes/user-name.pipe';
+import { UserNamePipe } from './shared/pipes/user-name.pipe';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {StatusNamePipe } from './pipes/status-name.pipe';
-import { BgColorDirective } from './directives/bg-color.directive';
+import {StatusNamePipe } from './shared/pipes/status-name.pipe';
+import { BgColorDirective } from './shared/directives/bg-color.directive';
 import {HttpClientModule} from "@angular/common/http";
-import { CountryNamePipe } from './pipes/country-name.pipe';
+import { CountryNamePipe } from './shared/pipes/country-name.pipe';
+import {SharedModule} from "./shared/shared.module";
+import {CoreModule} from "./core/core.module";
 
 
 @NgModule({
@@ -18,17 +20,16 @@ import { CountryNamePipe } from './pipes/country-name.pipe';
     AppComponent,
     SearchComponent,
     ContentComponent,
-    UserNamePipe,
-    StatusNamePipe,
-    BgColorDirective,
-    CountryNamePipe
+
   ],
   imports: [
     BrowserModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    SharedModule,
+    CoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]

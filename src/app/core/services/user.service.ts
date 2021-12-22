@@ -6,9 +6,7 @@ import {HttpClient} from "@angular/common/http";
 import {ProjectModel} from "../models/project.model";
 
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class UserService {
 
   constructor(private http: HttpClient) {

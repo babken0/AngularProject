@@ -1,10 +1,10 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges,} from '@angular/core';
-import {ProjectService} from "../services/project.service";
-import {ProjectModel} from "../models/project.model";
-import {StatusService} from "../services/status.service";
-import {SearchModel} from "../models/search.model";
-import {ResponseService} from "../services/response.service";
-import {Sort} from "../models/Sort.model";
+import {ProjectService} from "../../core/services/project.service";
+import {ProjectModel} from "../../core/models/project.model";
+import {StatusService} from "../../core/services/status.service";
+import {SearchModel} from "../../core/models/search.model";
+import {ResponseService} from "../../core/services/response.service";
+import {Sort} from "../../core/models/Sort.model";
 
 @Component({
   selector: 'app-content',

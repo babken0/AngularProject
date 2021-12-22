@@ -1,5 +1,5 @@
 import {Pipe, PipeTransform} from '@angular/core';
-import {UserService} from "../services/user.service";
+import {UserService} from "../../core/services/user.service";
 import {map} from "rxjs/operators";
 import {Observable} from "rxjs";
 

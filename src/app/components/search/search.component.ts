@@ -1,8 +1,8 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {CountryService} from "../services/country.service";
-import {CountryModel} from "../models/country.model";
+import {CountryService} from "../../core/services/country.service";
+import {CountryModel} from "../../core/models/country.model";
 import {FormControl, FormGroup} from "@angular/forms";
-import {SearchModel} from "../models/search.model";
+import {SearchModel} from "../../core/models/search.model";
 
 @Component({
   selector: 'app-search',

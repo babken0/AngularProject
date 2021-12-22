@@ -1,6 +1,6 @@
 import {Pipe, PipeTransform} from '@angular/core';
-import {StatusService} from "../services/status.service";
-import {Status} from "../models/status.model";
+import {StatusService} from "../../core/services/status.service";
+import {Status} from "../../core/models/status.model";
 import {Observable} from "rxjs";
 import {map} from "rxjs/operators";
 

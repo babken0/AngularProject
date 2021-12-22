@@ -7,9 +7,7 @@ import {ProjectModel} from "../models/project.model";
 import {forkJoin} from "rxjs";
 import {of} from "rxjs";
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class CountryService {
   countries!: CountryModel[];
 

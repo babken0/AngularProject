@@ -7,9 +7,7 @@ import {ProjectModel} from "../models/project.model";
 import {CountryModel} from "../models/country.model";
 
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class StatusService {
 
   constructor(private http: HttpClient) {

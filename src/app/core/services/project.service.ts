@@ -11,12 +11,10 @@ import {UserService} from "./user.service";
 import {ResponseService} from "./response.service";
 import {Sort} from "../models/Sort.model";
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class ProjectService {
   searchData!: SearchModel;
-  projects: ProjectModel[] = [];
+  projects!: ProjectModel[];
   projectCountries: CountryModel[] = []
   projectUsers: User[] = []
   projectStatuses: Status[] = []
@@ -35,7 +33,9 @@ export class ProjectService {
 
 
   getProjects(filterOption: SearchModel, statusId: number, sort: Sort): ProjectModel[] {
-    this.getAllProject();
+    if (!this.projects) {
+      this.getAllProject();
+    }
     this.getProjectsCountry();
     this.getProjectsStatus();
     this.getProjectsUser();
