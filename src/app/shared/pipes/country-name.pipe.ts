@@ -12,7 +12,7 @@ export class CountryNamePipe implements PipeTransform {
 
   transform(id: number): Observable<string> {
     return this.countryService.getCountryById(id)
-      .pipe(map(country=> country.name["3"]))
+      .pipe(map(country=> country?.name["3"]))
 
   }
 

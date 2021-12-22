@@ -13,6 +13,8 @@ import {HttpClientModule} from "@angular/common/http";
 import { CountryNamePipe } from './shared/pipes/country-name.pipe';
 import {SharedModule} from "./shared/shared.module";
 import {CoreModule} from "./core/core.module";
+import {AppRoutingModule} from "./app-routing.module";
+import { RootComponent } from './components/root/root.component';
 
 
 @NgModule({
@@ -20,6 +22,7 @@ import {CoreModule} from "./core/core.module";
     AppComponent,
     SearchComponent,
     ContentComponent,
+    RootComponent,
 
   ],
   imports: [
@@ -29,7 +32,8 @@ import {CoreModule} from "./core/core.module";
     ReactiveFormsModule,
     HttpClientModule,
     SharedModule,
-    CoreModule
+    CoreModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

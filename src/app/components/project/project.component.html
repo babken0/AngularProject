@@ -1,0 +1,27 @@
+<div class="intervention-info">
+  <div class="intervention-country">
+    <h2>Country of Intervention </h2>
+    {{intervention["InterventionCountryID"]|countryName|async}}
+  </div>
+  <div class="external-reference">
+    <h2>External Reference #</h2>
+    {{intervention["ExternalReferenceNumber"]}}
+  </div>
+  <div class="title-of-intervention">
+    <h2>Title of the intervention</h2>
+    {{intervention["Title"]}}
+  </div>
+  <div class="commercical-name">
+    <h2>Commercial Intervention Name</h2>
+    {{intervention["CommericalName"]}}
+  </div>
+
+  <div class="short-name">
+    <h2>Short name</h2>
+    {{intervention["ShortName"]}}
+  </div>
+  <div class="intervention-description">
+    <h2>Intervention Description</h2>
+    {{intervention["Description"]}}
+  </div>
+</div>

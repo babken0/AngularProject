@@ -5,6 +5,7 @@ import {StatusService} from "../../core/services/status.service";
 import {SearchModel} from "../../core/models/search.model";
 import {ResponseService} from "../../core/services/response.service";
 import {Sort} from "../../core/models/Sort.model";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-content',
@@ -22,6 +23,7 @@ export class ContentComponent implements OnInit, OnChanges {
   color: string = 'white';
 
   constructor(
+    private _router: Router,
     private statusService: StatusService,
     private responseService: ResponseService,
     private projectService: ProjectService) {
@@ -66,5 +68,9 @@ export class ContentComponent implements OnInit, OnChanges {
     this.selectedStatusId = +id;
     this.filteredProjects = this.projectService.getProjects(this.searchData, this.selectedStatusId, this.sortBy)
   }
+
+  // public navigateToProject(interventionId: number): void {
+  //   this._router.navigateByUrl("/projects/" + interventionId)
+  // }
 
 }

@@ -1,0 +1,17 @@
+.box {
+  /*border: 1px solid red;*/
+  width:90%;
+  display:flex;
+  margin:auto;
+  justify-content: space-between;
+}
+.outer{
+  width: 20%;
+  min-width: 270px;
+  margin-right: 20px;
+}
+.inner{
+  width: 75%;
+  min-width:950px ;
+}
+
