@@ -23,8 +23,11 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let data of filteredProjects; let i = index" appBgColor >
-      <td><a href="" [routerLink]="['projects',data.InterventionID]">{{data.InterventionCode}}</a></td>
+    <tr *ngFor="let data of filteredProjects | paginate : {
+                                                      itemsPerPage: 3,
+                                                      currentPage: currentPage,
+                                                      totalItems: total} ; let i = index" appBgColor>
+      <td><a href="" [routerLink]="['projects',data.InterventionInstanceId]">{{data.InterventionCode}}</a></td>
       <td>{{data.ShortName}}</td>
       <td>{{data.Title}}</td>
       <td>{{data.InterventionCountryID|countryName|async}}</td>
@@ -34,4 +37,5 @@
     </tr>
     </tbody>
   </table>
+  <pagination-controls (pageChange)="currentPage = $event"></pagination-controls>
 </div>

@@ -1,7 +1,7 @@
-<div class="intervention-info">
+<div class="intervention-info" *ngIf="intervention$ | async as intervention">
   <div class="intervention-country">
     <h2>Country of Intervention </h2>
-    {{intervention["InterventionCountryID"]|countryName|async}}
+    {{intervention["InterventionCountryID"] | countryName|async}}
   </div>
   <div class="external-reference">
     <h2>External Reference #</h2>

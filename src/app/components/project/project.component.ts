@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
-import {ResponseService} from "../../core/services/response.service";
+import {ProjectModel} from "../../core/models/project.model";
+import {Observable} from "rxjs";
+import {ProjectService} from "../../core/services/project.service";
 
 @Component({
   selector: 'app-project',
@@ -8,16 +10,13 @@ import {ResponseService} from "../../core/services/response.service";
   styleUrls: ['./project.component.css']
 })
 export class ProjectComponent implements OnInit {
-  intervention:Object = {}
+  intervention$!: Observable<ProjectModel>
 
-  constructor(private route:ActivatedRoute,
-              private responseService:ResponseService) { }
-
-  ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      return this.responseService.getResponseByInterventionCode(params["id"]).subscribe(intervention => this.intervention = intervention)
-    })
+  constructor(private route: ActivatedRoute,
+              private projectService: ProjectService) {
   }
 
-
+  ngOnInit(): void {
+    this.intervention$ = this.projectService.getProject(this.route.snapshot.params["id"])
+  }
 }

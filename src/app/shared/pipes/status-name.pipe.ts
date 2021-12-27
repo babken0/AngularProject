@@ -1,6 +1,5 @@
 import {Pipe, PipeTransform} from '@angular/core';
 import {StatusService} from "../../core/services/status.service";
-import {Status} from "../../core/models/status.model";
 import {Observable} from "rxjs";
 import {map} from "rxjs/operators";
 
@@ -13,6 +12,6 @@ export class StatusNamePipe implements PipeTransform {
 
   transform(id: number): Observable<string> {
     return this.statusService.getStatusById(id)
-      .pipe(map(status=> status.name["3"]));
+      .pipe(map(status => status?.name["3"]));
   }
 }

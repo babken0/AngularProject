@@ -3,7 +3,6 @@ import {UserService} from "../../core/services/user.service";
 import {map} from "rxjs/operators";
 import {Observable} from "rxjs";
 
-// TODO: Rename to username
 @Pipe({
   name: 'userName'
 })

@@ -8,7 +8,7 @@
       <label for="country">Country</label><br>
       <select name="country" id="country" formControlName="country">
         <option [attr.value]="0">AllCountries</option>
-        <option [value]="country.CountryId" *ngFor="let country of countriesList">{{ country.name["3"] }}</option>
+        <option [value]="country.CountryId" *ngFor="let country of countries$ | async">{{ country.name["3"] }}</option>
       </select>
     </div>
     <div class="keyword">

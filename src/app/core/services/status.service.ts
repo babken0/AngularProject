@@ -1,34 +1,36 @@
 import {Injectable} from '@angular/core';
 import {Status} from "../models/status.model";
-import {map} from "rxjs/operators";
+import {map, shareReplay} from "rxjs/operators";
 import {HttpClient} from "@angular/common/http";
-import {Observable,forkJoin} from "rxjs";
+import {forkJoin, Observable,of} from "rxjs";
 import {ProjectModel} from "../models/project.model";
-import {CountryModel} from "../models/country.model";
+
 
 
 @Injectable()
 export class StatusService {
+  statuses$ !:Observable<Status[]>
 
   constructor(private http: HttpClient) {
+    this.statuses$ = this.http.get("../../assets/WorkflowStates.json")
+      .pipe(map(statuses => statuses["data"] as Status[]),
+    shareReplay({bufferSize:1,refCount:true}))
   }
 
-  private getStatusesObservable(): Observable<Status[]> {
-    return this.http.get("../../assets/WorkflowStates.json")
-      .pipe(map(statuses => statuses["data"] as Status[]))
+  private getStatuses(): Observable<Status[]> {
+    return this.statuses$;
   }
 
   getStatusById(statusID: number): Observable<Status> {
-    return <Observable<Status>>this.getStatusesObservable()
+    return <Observable<Status>>this.getStatuses()
       .pipe(map(statuses => statuses.find(status => status.WFSTATEID == statusID)))
   }
 
-  getProjectsStatus(projectsObservable: Observable<ProjectModel[]>): Observable<Status[]> {
-    const statusesObservable = this.getStatusesObservable();
-    return forkJoin([
-      projectsObservable, statusesObservable])
+  getProjectsStatus(projects$: Observable<ProjectModel[]>): Observable<Status[]> {
+    const statuses$ = this.getStatuses();
+    return forkJoin([projects$, statuses$])
       .pipe(map(([projects, statuses]) => {
-          return <Status[]>projects.map(project => statuses.find(status => status.WFSTATEID == project.workflowStateId))
+          return <Status[]> projects.map(project => statuses.find(status => status.WFSTATEID == project.workflowStateId))
         })
       )
   }

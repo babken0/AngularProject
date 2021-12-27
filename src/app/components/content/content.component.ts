@@ -3,9 +3,8 @@ import {ProjectService} from "../../core/services/project.service";
 import {ProjectModel} from "../../core/models/project.model";
 import {StatusService} from "../../core/services/status.service";
 import {SearchModel} from "../../core/models/search.model";
-import {ResponseService} from "../../core/services/response.service";
 import {Sort} from "../../core/models/Sort.model";
-import {Router} from "@angular/router";
+
 
 @Component({
   selector: 'app-content',
@@ -15,17 +14,17 @@ import {Router} from "@angular/router";
 export class ContentComponent implements OnInit, OnChanges {
   @Input() searchData!: SearchModel;
   filteredProjects: ProjectModel[] = [];
-  projects: ProjectModel[] = []
+  projects: ProjectModel[] = [];
   selectedStatusId: number = 0;
   sortBy!: Sort
   count: number = 0;
   previousSort: string = "";
   color: string = 'white';
+  total: number = 0;
+  currentPage: number = 1;
 
   constructor(
-    private _router: Router,
     private statusService: StatusService,
-    private responseService: ResponseService,
     private projectService: ProjectService) {
   }
 
@@ -34,18 +33,17 @@ export class ContentComponent implements OnInit, OnChanges {
   }
 
   getAllResponse() {
-    this.responseService.getResponseObservable().subscribe(
-      projects => {
-        this.filteredProjects = projects
-        this.projects = projects
-      })
+    this.projectService.getProjects().subscribe(projects => {
+      this.filteredProjects = projects
+      this.projects = projects
+      this.total = projects.length
+    })
   }
-
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.filteredProjects = this.projectService.getProjects(this.searchData, this.selectedStatusId, this.sortBy)
+    this.projectService.getProjectsByFilter(this.searchData, this.selectedStatusId, this.sortBy).subscribe(projects => this.filteredProjects = projects)
+    this.total = this.filteredProjects.length
   }
-
 
   sortData(sortBy: string) {
     if (this.previousSort == sortBy) {
@@ -56,21 +54,19 @@ export class ContentComponent implements OnInit, OnChanges {
     }
     this.sortBy = {name: sortBy, option: this.count}
 
-    this.filteredProjects = this.projectService.getProjects(this.searchData, this.selectedStatusId, this.sortBy)
+    this.projectService.getProjectsByFilter(this.searchData, this.selectedStatusId, this.sortBy).subscribe(projects => this.filteredProjects = projects)
   }
 
   getStatusIdes(): number[] {
     const statuses = this.projects.map(data => data.workflowStateId);
+    this.total = this.filteredProjects.length
     return statuses.filter((c, index) => statuses.indexOf(c) === index);
   }
 
   onStatusChange(id: string): void {
     this.selectedStatusId = +id;
-    this.filteredProjects = this.projectService.getProjects(this.searchData, this.selectedStatusId, this.sortBy)
+    this.projectService.getProjectsByFilter(this.searchData, this.selectedStatusId, this.sortBy).subscribe(projects => this.filteredProjects = projects)
+    this.total = this.filteredProjects.length
   }
-
-  // public navigateToProject(interventionId: number): void {
-  //   this._router.navigateByUrl("/projects/" + interventionId)
-  // }
 
 }

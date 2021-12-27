@@ -1,5 +1,5 @@
 export interface ProjectModel {
-  InterventionID
+  InterventionInstanceId
   InterventionCode: string,
   ShortName: string,
   Title: string,

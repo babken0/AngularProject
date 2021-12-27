@@ -3,6 +3,7 @@ import {CountryService} from "../../core/services/country.service";
 import {CountryModel} from "../../core/models/country.model";
 import {FormControl, FormGroup} from "@angular/forms";
 import {SearchModel} from "../../core/models/search.model";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-search',
@@ -11,27 +12,21 @@ import {SearchModel} from "../../core/models/search.model";
 })
 export class SearchComponent implements OnInit {
   @Output() search = new EventEmitter<SearchModel>()
-  public countriesList: CountryModel[] = [];
+  public countries$!: Observable<CountryModel[]>;
   public formGroup: FormGroup;
 
   constructor(private countryService: CountryService) {
-
     this.formGroup = this.createFormGroup()
   }
 
   ngOnInit(): void {
-    this.getCountries();
-  }
-
-  private getCountries() {
-    return this.countryService.getCountriesObservable()
-      .subscribe(countries => this.countriesList = countries);
+    this.countries$ = this.countryService.getCountries()
   }
 
   private createFormGroup() {
     return new FormGroup(
       {
-        country: new FormControl(""),
+        country: new FormControl("0"),
         keyword: new FormControl(""),
         codeOfIntervention: new FormControl(""),
         titleOfIntervention: new FormControl(""),
@@ -48,7 +43,7 @@ export class SearchComponent implements OnInit {
   }
 
   onReset() {
-    this.search.emit(undefined);
+    this.search.emit();
   }
 
   createSearchModel(): SearchModel {
@@ -63,6 +58,4 @@ export class SearchComponent implements OnInit {
       startDateTo: this.formGroup.controls["startDateTo"].value,
     }
   }
-
-
 }

@@ -5,16 +5,17 @@ import {Directive, ElementRef, HostListener, Renderer2} from '@angular/core';
 })
 export class BgColorDirective {
 
-  constructor(private element:ElementRef,
-              private render:Renderer2) {
+  constructor(private element: ElementRef,
+              private render: Renderer2) {
 
   }
-  @HostListener("mouseenter") changeMouseEnter(){
-    this.render.setStyle(this.element.nativeElement,"background","gray")
+
+  @HostListener("mouseenter") changeMouseEnter() {
+    this.render.setStyle(this.element.nativeElement, "background", "gray")
   }
 
-  @HostListener("mouseleave") changeMouseLeave(){
-    this.render.setStyle(this.element.nativeElement,"background","white")
+  @HostListener("mouseleave") changeMouseLeave() {
+    this.render.setStyle(this.element.nativeElement, "background", "white")
   }
 
 }

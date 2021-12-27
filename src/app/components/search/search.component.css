@@ -1,4 +1,4 @@
-.searchBar{
+.searchBar {
   /*margin: 10px 30px;*/
   min-width: 200px;
   padding: 10px 20px;
@@ -7,21 +7,22 @@
   box-shadow: -3px 5px 5px;
 
 }
+
 .searchBar * {
   margin-bottom: 30px;
 
 }
 
-.buttons{
+.buttons {
   margin: 10px 0;
 }
 
-.buttons button{
+.buttons button {
   padding: 5px 15px;
   margin-right: 10px;
 }
 
-.buttons .searchBtn{
+.buttons .searchBtn {
   background-color: green;
   color: white;
 }
@@ -34,9 +35,9 @@
   margin: 5px 0 0 5px;
 }
 
-.special{
+.special {
   /*margin-left: 15px;*/
-  width:50%;
-  color:gray;
- padding:10px;
+  width: 50%;
+  color: gray;
+  padding: 10px;
 }

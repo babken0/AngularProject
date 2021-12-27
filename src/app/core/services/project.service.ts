@@ -8,8 +8,10 @@ import {Status} from "../models/status.model";
 import {CountryService} from "./country.service";
 import {StatusService} from "./status.service";
 import {UserService} from "./user.service";
-import {ResponseService} from "./response.service";
 import {Sort} from "../models/Sort.model";
+import {map} from "rxjs/operators";
+import {Observable, zip} from "rxjs";
+
 
 @Injectable()
 export class ProjectService {
@@ -28,29 +30,52 @@ export class ProjectService {
     private countryService: CountryService,
     private statusService: StatusService,
     private userService: UserService,
-    private responseService: ResponseService) {
+  ) {
+    this.loadProjects();
+  }
+
+  getProjects(): Observable<ProjectModel[]> {
+    return this.http.get("../../assets/response.json")
+      .pipe(map(data => {
+        return data["data"] as ProjectModel[]
+      }))
   }
 
 
-  getProjects(filterOption: SearchModel, statusId: number, sort: Sort): ProjectModel[] {
-    if (!this.projects) {
-      this.getAllProject();
-    }
-    this.getProjectsCountry();
-    this.getProjectsStatus();
-    this.getProjectsUser();
-    this.searchData = filterOption;
-    this.sort = sort
-    console.log(this.searchData)
-    this.selectedStatusId = statusId;
-    this.filterAll();
-    this.sortData();
-    return this.filteredProjects
+  loadProjects(): void {
+    this.http.get<ProjectModel[]>("../../assets/response.json").subscribe(projects => this.projects = projects)
+  }
+
+  getProject(instanceId: number): Observable<ProjectModel> {
+    return this.getProjects().pipe(
+      map(interventions => <ProjectModel>interventions.find(intervention => intervention.InterventionInstanceId == instanceId))
+    )
   }
 
 
-  getStatusName(id: number) {
-    return this.getStatusById(id)?.name[3]
+  getProjectsByFilter(filterOption: SearchModel, statusId: number, sort: Sort): Observable<ProjectModel[]> {
+    return zip(
+      this.getProjects(),
+      this.getProjectsCountry(),
+      this.getProjectsStatus(),
+      this.getProjectsUser()
+    ).pipe(
+      map(([projects, countries, statuses, users]) => {
+        this.projects = projects;
+        this.filteredProjects = projects;
+        this.projectCountries = countries;
+        this.projectStatuses = statuses;
+        this.projectUsers = users
+        this.searchData = filterOption;
+        this.sort = sort
+        this.selectedStatusId = statusId;
+        this.filterAll();
+        this.sortData();
+
+        return this.filteredProjects
+      })
+    )
+
   }
 
   getStatusIdes(): number[] {
@@ -130,7 +155,6 @@ export class ProjectService {
   sortData(): void {
     let sortBy = this.sort?.name
     let sortType = this.sort?.option
-    console.log(sortBy, sortType)
     switch (sortBy) {
       case "InterventionCode":
         this.filteredProjects = this.filteredProjects
@@ -158,7 +182,6 @@ export class ProjectService {
           });
         break;
       case "workflowStateId":
-        console.log("sort by Status")
         this.filteredProjects = this.filteredProjects
           .sort((a, b) => {
             return this.getStatusById(a.workflowStateId)?.name["3"]?.localeCompare((this.getStatusById(b.workflowStateId)?.name["3"])) * sortType;
@@ -180,40 +203,30 @@ export class ProjectService {
     }
   }
 
-  private getAllProject() {
-    return this.responseService.getResponseObservable()
-      .subscribe(data => {
-        this.projects = data;
-        this.filteredProjects = this.projects;
-        this.projectsFilteredBySearch = this.filteredProjects;
-      });
+
+  private getProjectsCountry(): Observable<CountryModel[]> {
+    return this.countryService.getProjectsCountry(this.getProjects())
+
   }
 
-  private getProjectsCountry() {
-    return this.countryService.getProjectsCountry(this.responseService.getResponseObservable())
-      .subscribe(countries => this.projectCountries = <CountryModel[]>countries)
+  private getProjectsUser(): Observable<User[]> {
+    return this.userService.getProjectsUsers(this.getProjects())
   }
 
-  private getProjectsUser() {
-    return this.userService.getProjectsUsers(this.responseService.getResponseObservable())
-      .subscribe(users => this.projectUsers = <User[]>users)
+  private getProjectsStatus(): Observable<Status[]> {
+    return this.statusService.getProjectsStatus(this.getProjects())
+
   }
 
-  private getProjectsStatus() {
-    return this.statusService.getProjectsStatus(this.responseService.getResponseObservable())
-      .subscribe(statuses => this.projectStatuses = <Status[]>statuses)
-  }
-
-  private getStatusById(id: number) {
+  private getStatusById(id: number): Status {
     return <Status>this.projectStatuses.find(status => status?.WFSTATEID == id)
   }
 
-  private getUserById(id: number) {
+  private getUserById(id: number): User {
     return <User>this.projectUsers.find(user => user?.UserID == id)
   }
 
   private getCountryById(id: number): CountryModel {
-    console.log(<CountryModel>this.projectCountries.find(country => country?.CountryId == id));
     return <CountryModel>this.projectCountries.find(country => country?.CountryId == id)
   }
 
@@ -223,19 +236,19 @@ export class ProjectService {
   }
 
 
-  private static containsCode(keyword: string, isChecked: boolean, project: ProjectModel) {
+  private static containsCode(keyword: string, isChecked: boolean, project: ProjectModel): boolean {
     return isChecked ? project?.InterventionCode?.toUpperCase()?.includes(keyword) : false;
   }
 
-  private static containsTitle(keyword: string, isChecked: boolean, project: ProjectModel) {
+  private static containsTitle(keyword: string, isChecked: boolean, project: ProjectModel): boolean {
     return isChecked ? project?.Title?.toUpperCase()?.includes(keyword) : false;
   }
 
-  private static containsShortName(keyword: string, isChecked: boolean, project: ProjectModel) {
+  private static containsShortName(keyword: string, isChecked: boolean, project: ProjectModel): boolean {
     return isChecked ? project?.ShortName?.toUpperCase()?.includes(keyword) : false;
   }
 
-  private static containsDescription(keyword: string, isChecked: boolean, project: ProjectModel) {
+  private static containsDescription(keyword: string, isChecked: boolean, project: ProjectModel): boolean {
     return isChecked ? project?.Description?.toUpperCase()?.includes(keyword) : false;
   }
 

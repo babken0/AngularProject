@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component} from '@angular/core';
 import {FormGroup} from "@angular/forms";
 import {SearchModel} from "../../core/models/search.model";
 

@@ -1,5 +1,5 @@
 .content {
-  width:100%;
+  width: 100%;
   /*border: 1px solid grey;*/
   border-radius: 8px;
   box-shadow: -3px 5px 5px;
@@ -60,10 +60,10 @@ th {
 }
 
 
-.white{
+.white {
   background: white;
 }
 
-.gray{
+.gray {
   background: gray;
 }
