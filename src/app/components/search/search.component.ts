@@ -13,17 +13,17 @@ import {Observable} from "rxjs";
 export class SearchComponent implements OnInit {
   @Output() search = new EventEmitter<SearchModel>()
   public countries$!: Observable<CountryModel[]>;
-  public formGroup: FormGroup;
+  public formGroup!: FormGroup;
 
   constructor(private countryService: CountryService) {
-    this.formGroup = this.createFormGroup()
+    this.formGroup = SearchComponent.createFormGroup()
   }
 
   ngOnInit(): void {
     this.countries$ = this.countryService.getCountries()
   }
 
-  private createFormGroup() {
+  private static createFormGroup() {
     return new FormGroup(
       {
         country: new FormControl("0"),

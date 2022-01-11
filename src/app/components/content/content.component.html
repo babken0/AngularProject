@@ -2,7 +2,7 @@
   <div class="filter-add">
     <div class="select">
       <label for="status">Status</label>
-      <select name="status" id="status" [ngModel]="selectedStatusId" (ngModelChange)="onStatusChange($event)">
+      <select name="status" id="status" [formControl]="selectedControl" >
         <option value="0">All statuses</option>
         <option [value]="statusId" *ngFor="let statusId of getStatusIdes()">{{statusId|statusName|async}}</option>
       </select>
@@ -26,7 +26,7 @@
     <tr *ngFor="let data of filteredProjects | paginate : {
                                                       itemsPerPage: 3,
                                                       currentPage: currentPage,
-                                                      totalItems: total} ; let i = index" appBgColor>
+                                                      totalItems: totalPagesCount} ; let i = index" appBgColor>
       <td><a href="" [routerLink]="['projects',data.InterventionInstanceId]">{{data.InterventionCode}}</a></td>
       <td>{{data.ShortName}}</td>
       <td>{{data.Title}}</td>

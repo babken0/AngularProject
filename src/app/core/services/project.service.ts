@@ -9,41 +9,33 @@ import {CountryService} from "./country.service";
 import {StatusService} from "./status.service";
 import {UserService} from "./user.service";
 import {Sort} from "../models/Sort.model";
-import {map} from "rxjs/operators";
+import {map, shareReplay} from "rxjs/operators";
 import {Observable, zip} from "rxjs";
 
 
 @Injectable()
 export class ProjectService {
+  private projects$: Observable<ProjectModel[]>;
   searchData!: SearchModel;
   projects!: ProjectModel[];
-  projectCountries: CountryModel[] = []
-  projectUsers: User[] = []
-  projectStatuses: Status[] = []
   filteredProjects: ProjectModel[] = [];
   selectedStatusId: number = 0;
   projectsFilteredBySearch: ProjectModel[] = [];
   sort!: Sort
 
-  constructor(
-    private http: HttpClient,
-    private countryService: CountryService,
-    private statusService: StatusService,
-    private userService: UserService,
-  ) {
-    this.loadProjects();
+  constructor(private http: HttpClient,
+              private countryService: CountryService,
+              private statusService: StatusService,
+              private userService: UserService) {
+    this.projects$ = this.http.get("../../assets/response.json")
+      .pipe(
+        map(data => data["data"] as ProjectModel[]),
+        shareReplay({bufferSize: 1, refCount: true})
+      )
   }
 
   getProjects(): Observable<ProjectModel[]> {
-    return this.http.get("../../assets/response.json")
-      .pipe(map(data => {
-        return data["data"] as ProjectModel[]
-      }))
-  }
-
-
-  loadProjects(): void {
-    this.http.get<ProjectModel[]>("../../assets/response.json").subscribe(projects => this.projects = projects)
+    return this.projects$;
   }
 
   getProject(instanceId: number): Observable<ProjectModel> {
@@ -52,39 +44,28 @@ export class ProjectService {
     )
   }
 
-
   getProjectsByFilter(filterOption: SearchModel, statusId: number, sort: Sort): Observable<ProjectModel[]> {
     return zip(
       this.getProjects(),
-      this.getProjectsCountry(),
-      this.getProjectsStatus(),
-      this.getProjectsUser()
+      this.countryService.getCountries(),
+      this.statusService.getStatuses(),
+      this.userService.getUsers()
     ).pipe(
       map(([projects, countries, statuses, users]) => {
         this.projects = projects;
         this.filteredProjects = projects;
-        this.projectCountries = countries;
-        this.projectStatuses = statuses;
-        this.projectUsers = users
         this.searchData = filterOption;
         this.sort = sort
         this.selectedStatusId = statusId;
         this.filterAll();
-        this.sortData();
+        this.sortData(countries, statuses, users);
 
         return this.filteredProjects
       })
     )
-
   }
 
-  getStatusIdes(): number[] {
-    const statuses = this.projectsFilteredBySearch.map(data => data.workflowStateId);
-
-    return statuses.filter((c, index) => statuses.indexOf(c) === index);
-  }
-
-  filterAll(): void {
+  private filterAll(): void {
     if (this.searchData) {
       this.doFilterByCountryId(this.searchData?.countryId);
       this.doFilterKeyword();
@@ -98,7 +79,7 @@ export class ProjectService {
     }
   }
 
-  filterByStatusId(statusId: number): void {
+  private filterByStatusId(statusId: number): void {
     if (statusId == 0) {
       this.filteredProjects = this.projectsFilteredBySearch
     } else {
@@ -114,7 +95,7 @@ export class ProjectService {
     }
   }
 
-  doFilterKeyword(): void {
+  private doFilterKeyword(): void {
     let keyword = this.searchData?.keyword;
     const isCodeOfIntervention = this.searchData?.codeOfIntervention;
     const isTitleOfIntervention = this.searchData?.titleOfIntervention;
@@ -137,7 +118,7 @@ export class ProjectService {
     }));
   }
 
-  filterByStartDate(): void {
+  private filterByStartDate(): void {
     const fromInt = new Date(this.searchData?.startDateFrom | 0).getTime()
     let toInt = Infinity
 
@@ -152,89 +133,62 @@ export class ProjectService {
     )
   }
 
-  sortData(): void {
+  private sortData(countries: CountryModel[], statuses: Status[], users: User[]): void {
     let sortBy = this.sort?.name
     let sortType = this.sort?.option
     switch (sortBy) {
       case "InterventionCode":
-        this.filteredProjects = this.filteredProjects
-          .sort((a, b) => {
-            return (a.InterventionCode?.localeCompare(b.InterventionCode)) * sortType;
-          });
-        break;
       case "ShortName":
-        this.filteredProjects = this.filteredProjects
-          .sort((a, b) => {
-            return (a.ShortName?.localeCompare(b.ShortName)) * sortType;
-          });
-        break;
       case "Title":
         this.filteredProjects = this.filteredProjects
           .sort((a, b) => {
-            return (a.Title?.localeCompare(b.Title)) * sortType;
+            return (a[sortBy]?.localeCompare(b[sortBy])) * sortType;
           });
         break;
       case "InterventionCountryID":
         this.filteredProjects = this.filteredProjects
           .sort((a, b) => {
+            const firstCountryName = this.getCountryById(countries, a.InterventionCountryID)?.name["3"];
+            const secondCountryName = this.getCountryById(countries, b.InterventionCountryID)?.name["3"];
 
-            return ((this.getCountryById(a.InterventionCountryID)?.name["3"])?.localeCompare(this.getCountryById(b.InterventionCountryID)?.name["3"]) * sortType);
+            return (firstCountryName?.localeCompare(secondCountryName) * sortType);
           });
         break;
       case "workflowStateId":
         this.filteredProjects = this.filteredProjects
           .sort((a, b) => {
-            return this.getStatusById(a.workflowStateId)?.name["3"]?.localeCompare((this.getStatusById(b.workflowStateId)?.name["3"])) * sortType;
+            const firstStatusName = this.getStatusById(statuses, a.workflowStateId)?.name["3"];
+            const secondStatusName = this.getStatusById(statuses, b.workflowStateId)?.name["3"];
+            return firstStatusName?.localeCompare(secondStatusName) * sortType;
           });
         break;
       case "UpdatedUserID":
         this.filteredProjects = this.filteredProjects
           .sort((a, b) => {
-
-            return (this.getUserById(a.UpdatedUserID)?.name["3"] ?? "").localeCompare((this.getUserById(b.UpdatedUserID)?.name["3"] ?? "")) * sortType;
+            const firstUserName = this.getUserById(users, a.UpdatedUserID)?.name["3"] ?? "";
+            const secondUserName = this.getUserById(users, b.UpdatedUserID)?.name["3"] ?? "";
+            return (firstUserName).localeCompare(secondUserName) * sortType;
           });
         break;
       case "DateUpdated":
         this.filteredProjects = this.filteredProjects
-          .sort((a, b) => {
-            return (a.DateUpdated - b.DateUpdated) * sortType;
-          });
+          .sort((a, b) => (a.DateUpdated - b.DateUpdated) * sortType);
         break;
     }
   }
 
 
-  private getProjectsCountry(): Observable<CountryModel[]> {
-    return this.countryService.getProjectsCountry(this.getProjects())
-
+  private getStatusById(statuses: Status[], id: number): Status {
+    return <Status>statuses.find(status => status?.WFSTATEID == id)
   }
 
-  private getProjectsUser(): Observable<User[]> {
-    return this.userService.getProjectsUsers(this.getProjects())
+  private getUserById(users: User[], id: number): User {
+    return <User>users.find(user => user?.UserID == id)
   }
 
-  private getProjectsStatus(): Observable<Status[]> {
-    return this.statusService.getProjectsStatus(this.getProjects())
-
+  private getCountryById(countries: CountryModel[], id: number): CountryModel {
+    return <CountryModel>countries.find(country => country?.CountryId == id)
   }
-
-  private getStatusById(id: number): Status {
-    return <Status>this.projectStatuses.find(status => status?.WFSTATEID == id)
-  }
-
-  private getUserById(id: number): User {
-    return <User>this.projectUsers.find(user => user?.UserID == id)
-  }
-
-  private getCountryById(id: number): CountryModel {
-    return <CountryModel>this.projectCountries.find(country => country?.CountryId == id)
-  }
-
-  onStatusChange(id: string): void {
-    this.selectedStatusId = +id;
-    this.filterByStatusId(this.selectedStatusId)
-  }
-
 
   private static containsCode(keyword: string, isChecked: boolean, project: ProjectModel): boolean {
     return isChecked ? project?.InterventionCode?.toUpperCase()?.includes(keyword) : false;
